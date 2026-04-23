@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
+import logo from '../assets/vasudhara-logo.jpeg'
 
 const navLinks = [
   { href: '#packages', label: 'States' },
@@ -68,18 +69,26 @@ export default function Navbar() {
             style={{
               width: '36px',
               height: '36px',
-              background: '#d4891a',
+              background: 'rgba(255,255,255,0.06)',
+              border: '1px solid rgba(255,255,255,0.12)',
               borderRadius: '8px',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              fontFamily: "'Cormorant Garamond', serif",
-              fontSize: '20px',
-              fontWeight: '700',
-              color: '#0c0f15',
+              overflow: 'hidden',
             }}
           >
-            V
+            <img
+              src={logo}
+              alt="Vasudhara Tours and Travels"
+              style={{
+                width: '100%',
+                height: '100%',
+                objectFit: 'cover',
+                objectPosition: '10% center',
+                transform: 'scale(1.06)',
+              }}
+            />
           </div>
           <div>
             <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: '18px', fontWeight: '700', color: '#ffffff' }}>Vasudhara</div>

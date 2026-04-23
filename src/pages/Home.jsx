@@ -3,6 +3,7 @@ import EnquiryForm from '../components/EnquiryForm'
 import Navbar from '../components/Navbar'
 import PackageCard from '../components/PackageCard'
 import { DESTINATIONS, PACKAGES, TESTIMONIALS } from '../lib/data'
+import logo from '../assets/vasudhara-logo.jpeg'
 
 const CONTACT_PHONE_DISPLAY = '+919046605444'
 const CONTACT_PHONE_LINK = '+919046605444'
@@ -179,7 +180,7 @@ export default function Home() {
 
       <section style={{ position: 'relative', minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: isMobile ? '100px 20px 60px' : '120px 40px 80px', overflow: 'hidden' }}>
         <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, rgba(12,15,21,0.3) 0%, rgba(12,15,21,0.15) 40%, rgba(12,15,21,0.75) 80%, #0c0f15 100%)', zIndex: 1 }} />
-        <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1800&q=80" alt="Eastern Himalayas" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', zIndex: 0 }} />
+        <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1800&q=80" alt="Himalayas" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', zIndex: 0 }} />
 
         <div style={{ position: 'relative', zIndex: 2, textAlign: 'center', maxWidth: '780px', width: '100%' }}>
           <div style={{ display: 'inline-block', background: 'rgba(212,137,26,0.15)', border: '1px solid rgba(212,137,26,0.4)', color: '#f0b445', fontSize: '11px', fontWeight: '600', letterSpacing: '2px', textTransform: 'uppercase', padding: '6px 18px', borderRadius: '100px', marginBottom: '24px' }}>
@@ -188,7 +189,7 @@ export default function Home() {
           <h1 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 'clamp(38px, 7vw, 82px)', fontWeight: '300', color: '#ffffff', lineHeight: '1.08', marginBottom: '20px', letterSpacing: '-0.02em' }}>
             Journeys into the
             <br />
-            <em style={{ color: '#f0b445', fontStyle: 'normal' }}>Eastern Himalayas</em>
+            <em style={{ color: '#f0b445', fontStyle: 'normal' }}>Himalayas</em>
           </h1>
           <p style={{ color: 'rgba(184,196,212,0.85)', fontSize: isMobile ? '16px' : '18px', lineHeight: '1.65', marginBottom: '36px', fontWeight: '300' }}>
             Darjeeling tea gardens, Sikkim monasteries, and Dooars jungles crafted by local experts who know every turn of the route.
@@ -429,11 +430,17 @@ export default function Home() {
           <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : isTablet ? '1fr 1fr' : '2fr 1fr 1fr 1fr', gap: isMobile ? '28px' : '40px', paddingBottom: '40px', borderBottom: '1px solid rgba(255,255,255,0.06)' }}>
             <div>
               <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '16px' }}>
-                <div style={{ width: '34px', height: '34px', background: '#d4891a', borderRadius: '8px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: "'Cormorant Garamond', serif", fontSize: '18px', fontWeight: '700', color: '#0c0f15' }}>V</div>
+                <div style={{ width: '34px', height: '34px', background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.12)', borderRadius: '8px', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}>
+                  <img
+                    src={logo}
+                    alt="Vasudhara Tours and Travels"
+                    style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: '10% center', transform: 'scale(1.06)' }}
+                  />
+                </div>
                 <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: '16px', fontWeight: '700', color: '#ffffff' }}>Vasudhara Tour and Travels</div>
               </div>
               <p style={{ fontSize: '13px', color: '#7a8899', lineHeight: '1.7' }}>
-                A trusted local travel partner for the Eastern Himalayas, built around careful planning and warm on-ground support.
+                A trusted local travel partner for the Himalayas, built around careful planning and warm on-ground support.
               </p>
               <div style={{ marginTop: '16px', display: 'flex', flexDirection: 'column', gap: '8px' }}>
                 <a href={`tel:${CONTACT_PHONE_LINK}`} style={{ color: '#f0b445', fontSize: '13px', textDecoration: 'none' }}>{CONTACT_PHONE_DISPLAY}</a>

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
 import { adminLogin, isFirebaseConfigured } from '../lib/firebase'
+import logo from '../assets/vasudhara-logo.jpeg'
 
 export default function AdminLogin() {
   const [email, setEmail] = useState('')
@@ -58,7 +59,13 @@ export default function AdminLogin() {
     <div style={{ minHeight: '100vh', background: '#0c0f15', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '20px' }}>
       <div style={{ background: '#141920', border: '1px solid rgba(255,255,255,0.08)', borderRadius: '20px', padding: '40px', width: '100%', maxWidth: '420px', boxShadow: '0 32px 80px rgba(0,0,0,0.5)' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '28px' }}>
-          <div style={{ width: '38px', height: '38px', background: '#d4891a', borderRadius: '9px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: "'Cormorant Garamond', serif", fontSize: '20px', fontWeight: '700', color: '#0c0f15' }}>V</div>
+          <div style={{ width: '38px', height: '38px', background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.12)', borderRadius: '9px', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}>
+            <img
+              src={logo}
+              alt="Vasudhara Tours and Travels"
+              style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: '10% center', transform: 'scale(1.06)' }}
+            />
+          </div>
           <div>
             <div style={{ fontSize: '15px', fontWeight: '700', color: '#ffffff' }}>Vasudhara Admin</div>
             <div style={{ fontSize: '11px', color: '#7a8899' }}>Management Panel</div>
