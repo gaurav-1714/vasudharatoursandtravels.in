@@ -3,7 +3,7 @@ import EnquiryForm from '../components/EnquiryForm'
 import Navbar from '../components/Navbar'
 import PackageCard from '../components/PackageCard'
 import { DESTINATIONS, PACKAGES, TESTIMONIALS } from '../lib/data'
-import logo from '../assets/vasudhara-logo.jpeg'
+import logo from '../assets/vasudhara-logo-badge.png'
 
 const CONTACT_PHONE_DISPLAY = '+919046605444'
 const CONTACT_PHONE_LINK = '+919046605444'
@@ -430,11 +430,11 @@ export default function Home() {
           <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : isTablet ? '1fr 1fr' : '2fr 1fr 1fr 1fr', gap: isMobile ? '28px' : '40px', paddingBottom: '40px', borderBottom: '1px solid rgba(255,255,255,0.06)' }}>
             <div>
               <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '16px' }}>
-                <div style={{ width: '34px', height: '34px', background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.12)', borderRadius: '8px', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}>
+                <div style={{ width: '168px', height: '48px', background: 'transparent', borderRadius: '12px', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}>
                   <img
                     src={logo}
                     alt="Vasudhara Tours and Travels"
-                    style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: '10% center', transform: 'scale(1.06)' }}
+                    style={{ width: '100%', height: '100%', objectFit: 'contain' }}
                   />
                 </div>
                 <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: '16px', fontWeight: '700', color: '#ffffff' }}>Vasudhara Tour and Travels</div>

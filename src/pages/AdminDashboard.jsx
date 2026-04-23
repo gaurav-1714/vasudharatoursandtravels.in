@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
 import { adminLogout, getEnquiries, updateEnquiryStatus } from '../lib/firebase'
-import logo from '../assets/vasudhara-logo.jpeg'
+import logo from '../assets/vasudhara-logo-badge.png'
 
 const statusColors = {
   new: { bg: 'rgba(52,152,219,0.15)', color: '#5baddc' },
@@ -93,11 +93,11 @@ export default function AdminDashboard() {
     <div style={{ background: '#0c0f15', minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
       <div style={{ background: '#141920', borderBottom: '1px solid rgba(255,255,255,0.08)', padding: '0 20px', minHeight: '56px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', position: 'sticky', top: 0, zIndex: 50, gap: '12px', flexWrap: 'wrap' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-          <div style={{ width: '32px', height: '32px', background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.12)', borderRadius: '7px', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}>
+          <div style={{ width: '148px', height: '40px', background: 'transparent', borderRadius: '10px', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}>
             <img
               src={logo}
               alt="Vasudhara Tours and Travels"
-              style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: '10% center', transform: 'scale(1.06)' }}
+              style={{ width: '100%', height: '100%', objectFit: 'contain' }}
             />
           </div>
           <div style={{ fontSize: '14px', fontWeight: '700', color: '#ffffff' }}>Vasudhara Admin</div>

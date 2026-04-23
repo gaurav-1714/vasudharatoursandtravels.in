@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
 import { adminLogin, isFirebaseConfigured } from '../lib/firebase'
-import logo from '../assets/vasudhara-logo.jpeg'
+import logo from '../assets/vasudhara-logo-badge.png'
 
 export default function AdminLogin() {
   const [email, setEmail] = useState('')
@@ -59,11 +59,11 @@ export default function AdminLogin() {
     <div style={{ minHeight: '100vh', background: '#0c0f15', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '20px' }}>
       <div style={{ background: '#141920', border: '1px solid rgba(255,255,255,0.08)', borderRadius: '20px', padding: '40px', width: '100%', maxWidth: '420px', boxShadow: '0 32px 80px rgba(0,0,0,0.5)' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '28px' }}>
-          <div style={{ width: '38px', height: '38px', background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.12)', borderRadius: '9px', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}>
+          <div style={{ width: '188px', height: '54px', background: 'transparent', borderRadius: '12px', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}>
             <img
               src={logo}
               alt="Vasudhara Tours and Travels"
-              style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: '10% center', transform: 'scale(1.06)' }}
+              style={{ width: '100%', height: '100%', objectFit: 'contain' }}
             />
           </div>
           <div>
