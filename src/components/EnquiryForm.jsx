@@ -136,7 +136,7 @@ export default function EnquiryForm({ prefilledDestination = '' }) {
     } catch (error) {
       console.error(error)
       setStatus('error')
-      setErrorMessage('Something went wrong. Please call 7319056003 or try again later.')
+      setErrorMessage('Something went wrong. Please call +91 9046605444 or try again later.')
     }
   }
 

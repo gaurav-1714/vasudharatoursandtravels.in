@@ -4,6 +4,16 @@ import Navbar from '../components/Navbar'
 import PackageCard from '../components/PackageCard'
 import { CATEGORIES, DESTINATIONS, PACKAGES, TESTIMONIALS } from '../lib/data'
 
+const CONTACT_PHONE_DISPLAY = '+91 9046605444'
+const CONTACT_PHONE_LINK = '+919046605444'
+const CONTACT_EMAIL = 'vasudharatravel@gmail.com'
+const CONTACT_ADDRESS = 'Park Tower, Mahishmari, Milan More Rd, Siliguri, West Bengal 734003'
+const SOCIAL_LINKS = [
+  { label: 'WhatsApp', href: 'https://wa.me/919046605444' },
+  { label: 'Facebook', href: 'https://facebook.com/vasudharatoursandtravels' },
+  { label: 'Instagram', href: 'https://instagram.com/vasudharatoursandtravels' },
+]
+
 function getWindowWidth() {
   return typeof window === 'undefined' ? 1200 : window.innerWidth
 }
@@ -115,7 +125,7 @@ export default function Home() {
   const infoPanels = {
     support: {
       title: 'Customer Support',
-      body: 'For trip planning, changes, and urgent travel help, call 7319056003 or email vasudharatravel@gmail.com. We are happy to guide you before and during your trip.',
+      body: `For trip planning, changes, and urgent travel help, call ${CONTACT_PHONE_DISPLAY} or email ${CONTACT_EMAIL}. We are happy to guide you before and during your trip.`,
     },
     cancellation: {
       title: 'Cancellation Policy',
@@ -340,9 +350,22 @@ export default function Home() {
                 </div>
               ))}
               <div style={{ marginTop: '32px', display: 'flex', flexDirection: 'column', gap: '10px' }}>
-                <a href="tel:7319056003" style={{ color: '#f0b445', fontSize: '14px', textDecoration: 'none' }}>7319056003</a>
-                <a href="mailto:vasudharatravel@gmail.com" style={{ color: '#f0b445', fontSize: '14px', textDecoration: 'none' }}>vasudharatravel@gmail.com</a>
-                <div style={{ color: '#7a8899', fontSize: '13px' }}>Champasari Road, Ice Factory Road, Ward-46, Champasari, Mallaguri, Siliguri, West Bengal, 734003</div>
+                <a href={`tel:${CONTACT_PHONE_LINK}`} style={{ color: '#f0b445', fontSize: '14px', textDecoration: 'none' }}>{CONTACT_PHONE_DISPLAY}</a>
+                <a href={`mailto:${CONTACT_EMAIL}`} style={{ color: '#f0b445', fontSize: '14px', textDecoration: 'none' }}>{CONTACT_EMAIL}</a>
+                <div style={{ color: '#7a8899', fontSize: '13px' }}>{CONTACT_ADDRESS}</div>
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px', marginTop: '6px' }}>
+                  {SOCIAL_LINKS.map((item) => (
+                    <a
+                      key={item.label}
+                      href={item.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      style={{ color: '#f0b445', fontSize: '13px', textDecoration: 'none' }}
+                    >
+                      {item.label}
+                    </a>
+                  ))}
+                </div>
               </div>
             </Reveal>
           </div>
@@ -367,6 +390,23 @@ export default function Home() {
               <p style={{ fontSize: '13px', color: '#7a8899', lineHeight: '1.7' }}>
                 A trusted local travel partner for the Eastern Himalayas, built around careful planning and warm on-ground support.
               </p>
+              <div style={{ marginTop: '16px', display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                <a href={`tel:${CONTACT_PHONE_LINK}`} style={{ color: '#f0b445', fontSize: '13px', textDecoration: 'none' }}>{CONTACT_PHONE_DISPLAY}</a>
+                <div style={{ color: '#7a8899', fontSize: '13px', lineHeight: '1.6' }}>{CONTACT_ADDRESS}</div>
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px' }}>
+                  {SOCIAL_LINKS.map((item) => (
+                    <a
+                      key={item.label}
+                      href={item.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      style={{ color: '#f0b445', fontSize: '12px', textDecoration: 'none' }}
+                    >
+                      {item.label}
+                    </a>
+                  ))}
+                </div>
+              </div>
             </div>
             <div>
               <div style={{ fontSize: '13px', fontWeight: '700', color: '#ffffff', marginBottom: '14px' }}>Destinations</div>
