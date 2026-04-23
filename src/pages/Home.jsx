@@ -2,12 +2,26 @@ import React, { useEffect, useRef, useState } from 'react'
 import EnquiryForm from '../components/EnquiryForm'
 import Navbar from '../components/Navbar'
 import PackageCard from '../components/PackageCard'
-import { CATEGORIES, DESTINATIONS, PACKAGES, TESTIMONIALS } from '../lib/data'
+import { DESTINATIONS, PACKAGES, TESTIMONIALS } from '../lib/data'
 
-const CONTACT_PHONE_DISPLAY = '+91 9046605444'
+const CONTACT_PHONE_DISPLAY = '+919046605444'
 const CONTACT_PHONE_LINK = '+919046605444'
 const CONTACT_EMAIL = 'vasudharatravel@gmail.com'
-const CONTACT_ADDRESS = 'Park Tower, Mahishmari, Milan More Rd, Siliguri, West Bengal 734003'
+const CONTACT_ADDRESS = 'Park Tower , Mahishmari, Milan More Rd, Siliguri, West Bengal 734003'
+const STATES = [
+  'Ladakh',
+  'Jammu & Kashmir',
+  'Himachal Pradesh',
+  'Uttarakhand',
+  'Darjeeling',
+  'Sikkim',
+  'Arunachal Pradesh',
+  'Assam',
+  'Meghalaya',
+  'Kerala',
+  'Nepal',
+  'Bhutan',
+]
 const SOCIAL_LINKS = [
   { label: 'WhatsApp', href: 'https://wa.me/919046605444' },
   { label: 'Facebook', href: 'https://facebook.com/vasudharatoursandtravels' },
@@ -83,7 +97,7 @@ function SectionHeader({ eyebrow, title, desc, center = false }) {
 }
 
 export default function Home() {
-  const [activeCategory, setActiveCategory] = useState('all')
+  const [activeState, setActiveState] = useState(null)
   const [searchDest, setSearchDest] = useState('')
   const [activeInfoPanel, setActiveInfoPanel] = useState(null)
   const { isMobile, isTablet } = useBreakpoint()
@@ -92,24 +106,30 @@ export default function Home() {
     document.querySelector(sectionId)?.scrollIntoView({ behavior: 'smooth' })
   }
 
-  const openCategory = (categoryId) => {
-    setActiveCategory(categoryId)
+  const openState = (stateLabel) => {
+    setActiveState(stateLabel)
     scrollToSection('#packages')
   }
 
   const destinationLinks = [
-    { label: 'Darjeeling Tours', category: 'darjeeling' },
-    { label: 'Sikkim Packages', category: 'sikkim' },
-    { label: 'Kalimpong Tours', category: 'kalimpong' },
-    { label: 'Dooars Safari', category: 'dooars' },
-    { label: 'Sandakphu Trek', category: 'trek' },
-    { label: 'Pelling Retreat', category: 'honeymoon' },
+    { label: 'Ladakh', state: 'Ladakh' },
+    { label: 'Jammu & Kashmir', state: 'Jammu & Kashmir' },
+    { label: 'Himachal Pradesh', state: 'Himachal Pradesh' },
+    { label: 'Uttarakhand', state: 'Uttarakhand' },
+    { label: 'Darjeeling', state: 'Darjeeling' },
+    { label: 'Sikkim', state: 'Sikkim' },
+    { label: 'Arunachal Pradesh', state: 'Arunachal Pradesh' },
+    { label: 'Assam', state: 'Assam' },
+    { label: 'Meghalaya', state: 'Meghalaya' },
+    { label: 'Kerala', state: 'Kerala' },
+    { label: 'Nepal', state: 'Nepal' },
+    { label: 'Bhutan', state: 'Bhutan' },
   ]
 
   const quickLinks = [
-    { label: 'All Packages', action: () => openCategory('all') },
+    { label: 'All Packages', action: () => { setActiveState(null); scrollToSection('#packages') } },
     { label: 'About Us', action: () => scrollToSection('#about') },
-    { label: 'Group Tours', action: () => openCategory('combo') },
+    { label: 'Group Tours', action: () => openState('Darjeeling') },
     { label: 'Custom Trips', action: () => scrollToSection('#enquiry') },
     { label: 'Contact Us', action: () => scrollToSection('#enquiry') },
   ]
@@ -146,10 +166,11 @@ export default function Home() {
   }
 
   const filteredPackages = PACKAGES.filter((item) => {
-    const matchCategory = activeCategory === 'all' || item.category === activeCategory
+    if (!activeState) return false
+    const matchState = Array.isArray(item.states) && item.states.includes(activeState)
     const q = searchDest.toLowerCase()
     const matchSearch = !q || item.destination.toLowerCase().includes(q) || item.title.toLowerCase().includes(q)
-    return matchCategory && matchSearch
+    return matchState && matchSearch
   })
 
   return (
@@ -177,7 +198,7 @@ export default function Home() {
               Explore Packages
             </a>
             <a href="#enquiry" onClick={(event) => { event.preventDefault(); document.querySelector('#enquiry')?.scrollIntoView({ behavior: 'smooth' }) }} style={{ background: 'transparent', color: '#ffffff', border: '1px solid rgba(255,255,255,0.3)', borderRadius: '10px', padding: '14px 32px', fontSize: '15px', fontWeight: '500', textDecoration: 'none' }}>
-              Get Free Quote
+              Enquire Now
             </a>
           </div>
 
@@ -200,7 +221,7 @@ export default function Home() {
       <section id="packages" style={{ padding: isMobile ? '60px 20px' : '80px 40px' }}>
         <div style={{ maxWidth: '1180px', margin: '0 auto' }}>
           <Reveal>
-            <SectionHeader eyebrow="Our Curated Tours" title={<>Best Selling <em style={{ fontStyle: 'italic', color: '#f0b445' }}>Packages</em></>} desc="Carefully crafted tours from Siliguri into the Eastern Himalayas. Pricing is shared as a custom quote based on your dates and preferences." />
+            <SectionHeader eyebrow="Explore by State" title={<>Choose a <em style={{ fontStyle: 'italic', color: '#f0b445' }}>Destination</em></>} desc="Tap a state to view available packages. If you don't see what you want, send an enquiry and we will customize a trip for you." />
           </Reveal>
 
           <Reveal delay={100}>
@@ -211,30 +232,47 @@ export default function Home() {
 
           <Reveal delay={150}>
             <div style={{ display: 'flex', gap: '8px', flexWrap: isMobile ? 'nowrap' : 'wrap', overflowX: isMobile ? 'auto' : 'visible', paddingBottom: isMobile ? '8px' : '0', marginBottom: '32px', scrollbarWidth: 'none' }}>
-              {CATEGORIES.map((category) => (
+              {STATES.map((stateLabel) => (
                 <button
-                  key={category.id}
-                  onClick={() => setActiveCategory(category.id)}
+                  key={stateLabel}
+                  onClick={() => setActiveState(stateLabel)}
                   style={{
                     padding: '8px 16px',
                     borderRadius: '100px',
-                    border: activeCategory === category.id ? '1px solid #d4891a' : '1px solid rgba(255,255,255,0.12)',
-                    background: activeCategory === category.id ? '#d4891a' : 'transparent',
-                    color: activeCategory === category.id ? '#0c0f15' : '#7a8899',
+                    border: activeState === stateLabel ? '1px solid #d4891a' : '1px solid rgba(255,255,255,0.12)',
+                    background: activeState === stateLabel ? '#d4891a' : 'transparent',
+                    color: activeState === stateLabel ? '#0c0f15' : '#7a8899',
                     fontSize: '12px',
                     fontWeight: '600',
                     cursor: 'pointer',
                     whiteSpace: 'nowrap',
                   }}
                 >
-                  {category.icon} {category.label}
+                  {stateLabel}
                 </button>
               ))}
             </div>
           </Reveal>
 
-          {filteredPackages.length === 0 ? (
-            <div style={{ textAlign: 'center', padding: '60px 20px', color: '#7a8899' }}>No packages found for your search.</div>
+          {!activeState ? (
+            <div style={{ textAlign: 'center', padding: '40px 20px', color: '#7a8899' }}>
+              Select a state above to view packages.
+            </div>
+          ) : filteredPackages.length === 0 ? (
+            <div style={{ textAlign: 'center', padding: '60px 20px', color: '#7a8899' }}>
+              No packages available for {activeState} yet.{' '}
+              <a
+                href="#enquiry"
+                onClick={(event) => {
+                  event.preventDefault()
+                  document.querySelector('#enquiry')?.scrollIntoView({ behavior: 'smooth' })
+                }}
+                style={{ color: '#f0b445', textDecoration: 'none', fontWeight: '700' }}
+              >
+                Send an enquiry
+              </a>
+              .
+            </div>
           ) : (
             <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : isTablet ? 'repeat(2, 1fr)' : 'repeat(3, 1fr)', gap: '22px' }}>
               {filteredPackages.map((pkg, index) => (
@@ -278,7 +316,14 @@ export default function Home() {
           <div style={{ display: 'grid', gridTemplateColumns: isMobile ? 'repeat(2, 1fr)' : 'repeat(3, 1fr)', gap: '14px' }}>
             {DESTINATIONS.map((destination, index) => (
               <Reveal key={destination.id} delay={index * 70}>
-                <div onClick={() => { setActiveCategory(destination.id); document.querySelector('#packages')?.scrollIntoView({ behavior: 'smooth' }) }} style={{ position: 'relative', borderRadius: '12px', overflow: 'hidden', cursor: 'pointer', aspectRatio: isMobile ? '4/3' : '3/2' }}>
+                <div
+                  onClick={() => {
+                    const stateLabel = destination.id === 'sikkim' || destination.id === 'pelling' ? 'Sikkim' : 'Darjeeling'
+                    setActiveState(stateLabel)
+                    document.querySelector('#packages')?.scrollIntoView({ behavior: 'smooth' })
+                  }}
+                  style={{ position: 'relative', borderRadius: '12px', overflow: 'hidden', cursor: 'pointer', aspectRatio: isMobile ? '4/3' : '3/2' }}
+                >
                   <img src={destination.imageUrl} alt={destination.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                   <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(0,0,0,0.65) 0%, transparent 55%)', display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', padding: '16px' }}>
                     <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: isMobile ? '18px' : '22px', fontWeight: '700', color: '#ffffff' }}>{destination.name}</div>
@@ -325,14 +370,14 @@ export default function Home() {
         <div style={{ maxWidth: '1100px', margin: '0 auto', display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1.2fr', gap: isMobile ? '40px' : '64px', alignItems: 'start' }}>
           <div>
             <Reveal>
-              <div style={{ fontSize: '11px', fontWeight: '700', letterSpacing: '2.5px', textTransform: 'uppercase', color: '#d4891a', marginBottom: '10px' }}>Get a Free Quote</div>
+              <div style={{ fontSize: '11px', fontWeight: '700', letterSpacing: '2.5px', textTransform: 'uppercase', color: '#d4891a', marginBottom: '10px' }}>Enquire Now</div>
               <h2 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 'clamp(28px, 4vw, 46px)', fontWeight: '300', color: '#ffffff', lineHeight: '1.15', marginBottom: '16px' }}>
                 Plan Your Dream
                 <br />
                 <em style={{ color: '#f0b445' }}>Himalayan Escape</em>
               </h2>
               <p style={{ color: '#7a8899', fontSize: '15px', lineHeight: '1.75', marginBottom: '28px' }}>
-                Share your dates, destination ideas, and budget range. A tailored itinerary can be prepared within 24 hours.
+                Share your dates, destination ideas, and preferences. A tailored itinerary can be prepared within 24 hours.
               </p>
               {[
                 'Free personalised itinerary',
@@ -414,7 +459,7 @@ export default function Home() {
                 <button
                   key={item.label}
                   type="button"
-                  onClick={() => openCategory(item.category)}
+                  onClick={() => openState(item.state)}
                   style={{ display: 'block', width: '100%', marginBottom: '8px', color: '#7a8899', fontSize: '13px', background: 'none', border: 'none', padding: 0, cursor: 'pointer', textAlign: 'left' }}
                 >
                   {item.label}

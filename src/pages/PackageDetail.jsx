@@ -170,7 +170,7 @@ export default function PackageDetail() {
           <div style={{ position: isMobile ? 'static' : 'sticky', top: '76px' }}>
             <div style={{ background: '#141920', border: '1px solid rgba(255,255,255,0.08)', borderRadius: '18px', padding: isMobile ? '22px' : '28px' }}>
               <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: '20px', fontWeight: '600', color: '#ffffff', marginBottom: '6px' }}>Enquire About This Package</div>
-              <div style={{ fontSize: '12px', color: '#7a8899', marginBottom: '20px' }}>No pricing is shown because every quote is tailored to dates, group size, and hotel preference.</div>
+              <div style={{ fontSize: '12px', color: '#7a8899', marginBottom: '20px' }}>Share your dates and preferences and our team will follow up soon.</div>
               <EnquiryForm prefilledDestination={pkg.destination} />
             </div>
           </div>

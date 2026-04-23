@@ -154,7 +154,7 @@ export default function PackageCard({ pkg }) {
             gap: '12px',
           }}
         >
-          <div style={{ fontSize: '12px', color: '#7a8899' }}>Min {pkg.minPax} pax - Enquire for price</div>
+          <div style={{ fontSize: '12px', color: '#7a8899' }}>Min {pkg.minPax} pax</div>
           <div
             style={{
               color: '#d4891a',
@@ -165,7 +165,23 @@ export default function PackageCard({ pkg }) {
               fontWeight: '700',
             }}
           >
-            View Details
+            <a
+              href="#enquiry"
+              onClick={(event) => {
+                event.stopPropagation()
+                event.preventDefault()
+
+                if (typeof window !== 'undefined' && window.location.pathname !== '/') {
+                  window.location.href = '/#enquiry'
+                  return
+                }
+
+                document.querySelector('#enquiry')?.scrollIntoView({ behavior: 'smooth' })
+              }}
+              style={{ color: 'inherit', textDecoration: 'none' }}
+            >
+              Enquire
+            </a>
           </div>
         </div>
       </div>

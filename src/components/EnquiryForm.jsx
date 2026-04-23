@@ -133,12 +133,12 @@ export default function EnquiryForm({ prefilledDestination = '' }) {
         budget: 'Standard',
         message: '',
       })
-    } catch (error) {
-      console.error(error)
-      setStatus('error')
-      setErrorMessage('Something went wrong. Please call +91 9046605444 or try again later.')
-    }
+  } catch (error) {
+    console.error(error)
+    setStatus('error')
+    setErrorMessage('Something went wrong. Please call +919046605444 or try again later.')
   }
+}
 
   if (status === 'success') {
     return (
