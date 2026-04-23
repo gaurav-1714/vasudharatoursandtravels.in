@@ -69,6 +69,7 @@ export default function EnquiryForm({ prefilledDestination = '' }) {
   })
   const [status, setStatus] = useState('idle')
   const [errorMessage, setErrorMessage] = useState('')
+  const [lastSubmitted, setLastSubmitted] = useState(null)
   const [isMobile, setIsMobile] = useState(getWindowWidth() < 640)
 
   useEffect(() => {
@@ -121,6 +122,16 @@ export default function EnquiryForm({ prefilledDestination = '' }) {
 
     try {
       await submitEnquiry(form)
+      setLastSubmitted(form)
+
+      // Best-effort email notification via Vercel serverless function.
+      // If the endpoint/env vars aren't configured yet, we still consider the enquiry received.
+      fetch('/api/enquiry', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(form),
+      }).catch(() => {})
+
       setStatus('success')
       setForm({
         name: '',
@@ -133,14 +144,28 @@ export default function EnquiryForm({ prefilledDestination = '' }) {
         budget: 'Standard',
         message: '',
       })
-  } catch (error) {
-    console.error(error)
-    setStatus('error')
-    setErrorMessage('Something went wrong. Please call +919046605444 or try again later.')
+    } catch (error) {
+      console.error(error)
+      setStatus('error')
+      setErrorMessage('Something went wrong. Please call +919046605444 or try again later.')
+    }
   }
-}
 
   if (status === 'success') {
+    const whatsappText = lastSubmitted
+      ? [
+          'Hello Vasudhara, I want to enquire.',
+          `Name: ${lastSubmitted.name || ''}`,
+          `Phone: ${lastSubmitted.phone || ''}`,
+          `Email: ${lastSubmitted.email || ''}`,
+          `Destination: ${lastSubmitted.destination || ''}`,
+          `Travellers: ${lastSubmitted.pax || ''}`,
+          `Month: ${lastSubmitted.month || ''}`,
+          `Duration: ${lastSubmitted.duration || ''}`,
+          `Requirements: ${lastSubmitted.message || ''}`,
+        ].join('\n')
+      : 'Hello Vasudhara, I want to enquire about a package.'
+
     return (
       <div
         style={{
@@ -166,6 +191,25 @@ export default function EnquiryForm({ prefilledDestination = '' }) {
         <div style={{ color: '#7a8899', fontSize: '14px', lineHeight: '1.7' }}>
           Thank you. The team will follow up within 24 hours.
         </div>
+        <a
+          href={`https://wa.me/919046605444?text=${encodeURIComponent(whatsappText)}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{
+            display: 'inline-block',
+            marginTop: '18px',
+            background: 'rgba(240,180,69,0.10)',
+            border: '1px solid rgba(240,180,69,0.30)',
+            borderRadius: '10px',
+            padding: '10px 18px',
+            color: '#f0b445',
+            fontSize: '13px',
+            fontWeight: '700',
+            textDecoration: 'none',
+          }}
+        >
+          WhatsApp Us Now
+        </a>
         <button
           type="button"
           onClick={() => setStatus('idle')}

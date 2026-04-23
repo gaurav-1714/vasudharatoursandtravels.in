@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
 import { adminLogout, getEnquiries, updateEnquiryStatus } from '../lib/firebase'
-import logo from '../assets/vasudhara-logo-badge.png'
+import logo from '../assets/vasudhara-logo.png'
 
 const statusColors = {
   new: { bg: 'rgba(52,152,219,0.15)', color: '#5baddc' },

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
 import { adminLogin, isFirebaseConfigured } from '../lib/firebase'
-import logo from '../assets/vasudhara-logo-badge.png'
+import logo from '../assets/vasudhara-logo.png'
 
 export default function AdminLogin() {
   const [email, setEmail] = useState('')

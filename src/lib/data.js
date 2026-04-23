@@ -1,3 +1,16 @@
+import ladakhImage from '../assets/destinations/ladakh.svg'
+import jammuKashmirImage from '../assets/destinations/jammu-kashmir.svg'
+import himachalImage from '../assets/destinations/himachal.svg'
+import uttarakhandImage from '../assets/destinations/uttarakhand.svg'
+import darjeelingImage from '../assets/destinations/darjeeling.svg'
+import sikkimImage from '../assets/destinations/sikkim.svg'
+import arunachalImage from '../assets/destinations/arunachal.svg'
+import assamImage from '../assets/destinations/assam.svg'
+import meghalayaImage from '../assets/destinations/meghalaya.svg'
+import keralaImage from '../assets/destinations/kerala.svg'
+import nepalImage from '../assets/destinations/nepal.svg'
+import bhutanImage from '../assets/destinations/bhutan.svg'
+
 export const PACKAGES = [
   {
     id: 'classic-darjeeling',
@@ -576,12 +589,18 @@ export const PACKAGES = [
 ]
 
 export const DESTINATIONS = [
-  { id: 'darjeeling', name: 'Darjeeling', region: 'West Bengal', pkgCount: 12, imageUrl: 'https://images.unsplash.com/photo-1544735716-392fe2489ffa?w=600&q=80', location: { mapUrl: 'https://maps.google.com/?q=Darjeeling,West+Bengal' } },
-  { id: 'sikkim', name: 'Sikkim', region: 'North-East India', pkgCount: 9, imageUrl: 'https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?w=600&q=80', location: { mapUrl: 'https://maps.google.com/?q=Sikkim' } },
-  { id: 'dooars', name: 'Dooars', region: 'West Bengal', pkgCount: 6, imageUrl: 'https://images.unsplash.com/photo-1448375240586-882707db888b?w=600&q=80', location: { mapUrl: 'https://maps.google.com/?q=Dooars,West+Bengal' } },
-  { id: 'kalimpong', name: 'Kalimpong', region: 'West Bengal', pkgCount: 5, imageUrl: 'https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=600&q=80', location: { mapUrl: 'https://maps.google.com/?q=Kalimpong,West+Bengal' } },
-  { id: 'pelling', name: 'Pelling', region: 'West Sikkim', pkgCount: 4, imageUrl: 'https://images.unsplash.com/photo-1519681393784-d120267933ba?w=600&q=80', location: { mapUrl: 'https://maps.google.com/?q=Pelling,Sikkim' } },
-  { id: 'sandakphu', name: 'Sandakphu', region: 'West Bengal', pkgCount: 3, imageUrl: 'https://images.unsplash.com/photo-1486911278844-a81c5267e227?w=600&q=80', location: { mapUrl: 'https://maps.google.com/?q=Sandakphu,West+Bengal' } },
+  { id: 'ladakh', name: 'Ladakh', state: 'Ladakh', region: 'Ladakh', pkgCount: 6, imageUrl: ladakhImage, location: { mapUrl: 'https://maps.google.com/?q=Ladakh' } },
+  { id: 'jammu-kashmir', name: 'Jammu & Kashmir', state: 'Jammu & Kashmir', region: 'Jammu & Kashmir', pkgCount: 6, imageUrl: jammuKashmirImage, location: { mapUrl: 'https://maps.google.com/?q=Jammu+and+Kashmir' } },
+  { id: 'himachal', name: 'Himachal Pradesh', state: 'Himachal Pradesh', region: 'Himachal Pradesh', pkgCount: 7, imageUrl: himachalImage, location: { mapUrl: 'https://maps.google.com/?q=Himachal+Pradesh' } },
+  { id: 'uttarakhand', name: 'Uttarakhand', state: 'Uttarakhand', region: 'Uttarakhand', pkgCount: 7, imageUrl: uttarakhandImage, location: { mapUrl: 'https://maps.google.com/?q=Uttarakhand' } },
+  { id: 'darjeeling', name: 'Darjeeling', state: 'Darjeeling', region: 'West Bengal', pkgCount: 12, imageUrl: darjeelingImage, location: { mapUrl: 'https://maps.google.com/?q=Darjeeling,West+Bengal' } },
+  { id: 'sikkim', name: 'Sikkim', state: 'Sikkim', region: 'North-East India', pkgCount: 9, imageUrl: sikkimImage, location: { mapUrl: 'https://maps.google.com/?q=Sikkim' } },
+  { id: 'arunachal', name: 'Arunachal Pradesh', state: 'Arunachal Pradesh', region: 'Arunachal Pradesh', pkgCount: 5, imageUrl: arunachalImage, location: { mapUrl: 'https://maps.google.com/?q=Arunachal+Pradesh' } },
+  { id: 'assam', name: 'Assam', state: 'Assam', region: 'Assam', pkgCount: 5, imageUrl: assamImage, location: { mapUrl: 'https://maps.google.com/?q=Assam' } },
+  { id: 'meghalaya', name: 'Meghalaya', state: 'Meghalaya', region: 'Meghalaya', pkgCount: 5, imageUrl: meghalayaImage, location: { mapUrl: 'https://maps.google.com/?q=Meghalaya' } },
+  { id: 'kerala', name: 'Kerala', state: 'Kerala', region: 'Kerala', pkgCount: 8, imageUrl: keralaImage, location: { mapUrl: 'https://maps.google.com/?q=Kerala' } },
+  { id: 'nepal', name: 'Nepal', state: 'Nepal', region: 'Nepal', pkgCount: 6, imageUrl: nepalImage, location: { mapUrl: 'https://maps.google.com/?q=Nepal' } },
+  { id: 'bhutan', name: 'Bhutan', state: 'Bhutan', region: 'Bhutan', pkgCount: 6, imageUrl: bhutanImage, location: { mapUrl: 'https://maps.google.com/?q=Bhutan' } },
 ]
 
 export const TESTIMONIALS = [

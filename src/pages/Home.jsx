@@ -3,7 +3,7 @@ import EnquiryForm from '../components/EnquiryForm'
 import Navbar from '../components/Navbar'
 import PackageCard from '../components/PackageCard'
 import { DESTINATIONS, PACKAGES, TESTIMONIALS } from '../lib/data'
-import logo from '../assets/vasudhara-logo-badge.png'
+import logo from '../assets/vasudhara-logo.png'
 
 const CONTACT_PHONE_DISPLAY = '+919046605444'
 const CONTACT_PHONE_LINK = '+919046605444'
@@ -192,7 +192,7 @@ export default function Home() {
             <em style={{ color: '#f0b445', fontStyle: 'normal' }}>Himalayas</em>
           </h1>
           <p style={{ color: 'rgba(184,196,212,0.85)', fontSize: isMobile ? '16px' : '18px', lineHeight: '1.65', marginBottom: '36px', fontWeight: '300' }}>
-            Darjeeling tea gardens, Sikkim monasteries, and Dooars jungles crafted by local experts who know every turn of the route.
+            From Ladakh and Jammu & Kashmir to Himachal Pradesh, Uttarakhand, Darjeeling, Sikkim, Arunachal Pradesh, Assam, Meghalaya, Kerala, Nepal, and Bhutan, crafted by local experts who know every turn of the route.
           </p>
           <div style={{ display: 'flex', gap: '12px', justifyContent: 'center', flexWrap: 'wrap' }}>
             <a href="#packages" onClick={(event) => { event.preventDefault(); document.querySelector('#packages')?.scrollIntoView({ behavior: 'smooth' }) }} style={{ background: '#d4891a', color: '#0c0f15', borderRadius: '10px', padding: '14px 32px', fontSize: '15px', fontWeight: '700', textDecoration: 'none' }}>
@@ -319,8 +319,7 @@ export default function Home() {
               <Reveal key={destination.id} delay={index * 70}>
                 <div
                   onClick={() => {
-                    const stateLabel = destination.id === 'sikkim' || destination.id === 'pelling' ? 'Sikkim' : 'Darjeeling'
-                    setActiveState(stateLabel)
+                    setActiveState(destination.state || destination.name)
                     document.querySelector('#packages')?.scrollIntoView({ behavior: 'smooth' })
                   }}
                   style={{ position: 'relative', borderRadius: '12px', overflow: 'hidden', cursor: 'pointer', aspectRatio: isMobile ? '4/3' : '3/2' }}

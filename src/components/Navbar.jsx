@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import logo from '../assets/vasudhara-logo-badge.png'
+import logo from '../assets/vasudhara-logo.png'
 
 const navLinks = [
   { href: '#packages', label: 'States' },
