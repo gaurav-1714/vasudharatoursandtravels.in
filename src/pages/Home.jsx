@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react'
 import EnquiryForm from '../components/EnquiryForm'
 import Navbar from '../components/Navbar'
 import PackageCard from '../components/PackageCard'
+import RotatingHeroBackground from '../components/RotatingHeroBackground'
 import { DESTINATIONS, PACKAGES, TESTIMONIALS } from '../lib/data'
 import logo from '../assets/vasudhara-logo.png'
 
@@ -9,19 +10,30 @@ const CONTACT_PHONE_DISPLAY = '+919046605444'
 const CONTACT_PHONE_LINK = '+919046605444'
 const CONTACT_EMAIL = 'vasudharatravel@gmail.com'
 const CONTACT_ADDRESS = 'Park Tower , Mahishmari, Milan More Rd, Siliguri, West Bengal 734003'
-const STATES = [
-  'Ladakh',
-  'Jammu & Kashmir',
-  'Himachal Pradesh',
-  'Uttarakhand',
-  'Darjeeling',
-  'Sikkim',
-  'Arunachal Pradesh',
-  'Assam',
-  'Meghalaya',
-  'Kerala',
-  'Nepal',
-  'Bhutan',
+const COUNTRY_GROUPS = [
+  {
+    country: 'India',
+    states: [
+      'Ladakh',
+      'Jammu & Kashmir',
+      'Himachal Pradesh',
+      'Uttarakhand',
+      'Darjeeling',
+      'Sikkim',
+      'Arunachal Pradesh',
+      'Assam',
+      'Meghalaya',
+      'Kerala',
+    ],
+  },
+  {
+    country: 'Nepal',
+    states: ['Nepal'],
+  },
+  {
+    country: 'Bhutan',
+    states: ['Bhutan'],
+  },
 ]
 const SOCIAL_LINKS = [
   { label: 'WhatsApp', href: 'https://wa.me/919046605444' },
@@ -99,6 +111,7 @@ function SectionHeader({ eyebrow, title, desc, center = false }) {
 
 export default function Home() {
   const [activeState, setActiveState] = useState(null)
+  const [activeCountry, setActiveCountry] = useState(null)
   const [searchDest, setSearchDest] = useState('')
   const [activeInfoPanel, setActiveInfoPanel] = useState(null)
   const { isMobile, isTablet } = useBreakpoint()
@@ -108,6 +121,8 @@ export default function Home() {
   }
 
   const openState = (stateLabel) => {
+    const matchingGroup = COUNTRY_GROUPS.find((group) => group.states.includes(stateLabel))
+    setActiveCountry(matchingGroup ? matchingGroup.country : null)
     setActiveState(stateLabel)
     scrollToSection('#packages')
   }
@@ -128,7 +143,7 @@ export default function Home() {
   ]
 
   const quickLinks = [
-    { label: 'All Packages', action: () => { setActiveState(null); scrollToSection('#packages') } },
+    { label: 'All Packages', action: () => { setActiveState(null); setActiveCountry(null); scrollToSection('#packages') } },
     { label: 'About Us', action: () => scrollToSection('#about') },
     { label: 'Group Tours', action: () => openState('Darjeeling') },
     { label: 'Custom Trips', action: () => scrollToSection('#enquiry') },
@@ -180,20 +195,17 @@ export default function Home() {
 
       <section style={{ position: 'relative', minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: isMobile ? '100px 20px 60px' : '120px 40px 80px', overflow: 'hidden' }}>
         <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, rgba(12,15,21,0.3) 0%, rgba(12,15,21,0.15) 40%, rgba(12,15,21,0.75) 80%, #0c0f15 100%)', zIndex: 1 }} />
-        <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1800&q=80" alt="Himalayas" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', zIndex: 0 }} />
+        <RotatingHeroBackground alt="Himalayas" />
 
         <div style={{ position: 'relative', zIndex: 2, textAlign: 'center', maxWidth: '780px', width: '100%' }}>
           <div style={{ display: 'inline-block', background: 'rgba(212,137,26,0.15)', border: '1px solid rgba(212,137,26,0.4)', color: '#f0b445', fontSize: '11px', fontWeight: '600', letterSpacing: '2px', textTransform: 'uppercase', padding: '6px 18px', borderRadius: '100px', marginBottom: '24px' }}>
             Siliguri-Based - Est. 2008
           </div>
-          <h1 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 'clamp(38px, 7vw, 82px)', fontWeight: '300', color: '#ffffff', lineHeight: '1.08', marginBottom: '20px', letterSpacing: '-0.02em' }}>
+          <h1 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 'clamp(38px, 7vw, 82px)', fontWeight: '300', color: '#ffffff', lineHeight: '1.08', marginBottom: '36px', letterSpacing: '-0.02em' }}>
             Journeys into the
             <br />
             <em style={{ color: '#f0b445', fontStyle: 'normal' }}>Himalayas</em>
           </h1>
-          <p style={{ color: 'rgba(184,196,212,0.85)', fontSize: isMobile ? '16px' : '18px', lineHeight: '1.65', marginBottom: '36px', fontWeight: '300' }}>
-            From Ladakh and Jammu & Kashmir to Himachal Pradesh, Uttarakhand, Darjeeling, Sikkim, Arunachal Pradesh, Assam, Meghalaya, Kerala, Nepal, and Bhutan, crafted by local experts who know every turn of the route.
-          </p>
           <div style={{ display: 'flex', gap: '12px', justifyContent: 'center', flexWrap: 'wrap' }}>
             <a href="#packages" onClick={(event) => { event.preventDefault(); document.querySelector('#packages')?.scrollIntoView({ behavior: 'smooth' }) }} style={{ background: '#d4891a', color: '#0c0f15', borderRadius: '10px', padding: '14px 32px', fontSize: '15px', fontWeight: '700', textDecoration: 'none' }}>
               Explore Packages
@@ -232,32 +244,70 @@ export default function Home() {
           </Reveal>
 
           <Reveal delay={150}>
-            <div style={{ display: 'flex', gap: '8px', flexWrap: isMobile ? 'nowrap' : 'wrap', overflowX: isMobile ? 'auto' : 'visible', paddingBottom: isMobile ? '8px' : '0', marginBottom: '32px', scrollbarWidth: 'none' }}>
-              {STATES.map((stateLabel) => (
-                <button
-                  key={stateLabel}
-                  onClick={() => setActiveState(stateLabel)}
-                  style={{
-                    padding: '8px 16px',
-                    borderRadius: '100px',
-                    border: activeState === stateLabel ? '1px solid #d4891a' : '1px solid rgba(255,255,255,0.12)',
-                    background: activeState === stateLabel ? '#d4891a' : 'transparent',
-                    color: activeState === stateLabel ? '#0c0f15' : '#7a8899',
-                    fontSize: '12px',
-                    fontWeight: '600',
-                    cursor: 'pointer',
-                    whiteSpace: 'nowrap',
-                  }}
-                >
-                  {stateLabel}
-                </button>
-              ))}
+            <div style={{ display: 'flex', gap: '8px', flexWrap: isMobile ? 'nowrap' : 'wrap', overflowX: isMobile ? 'auto' : 'visible', paddingBottom: isMobile ? '8px' : '0', marginBottom: '16px', scrollbarWidth: 'none' }}>
+              {COUNTRY_GROUPS.map((group) => {
+                const isActiveCountry = group.states.includes(activeState) || activeCountry === group.country
+                return (
+                  <button
+                    key={group.country}
+                    onClick={() => {
+                      setActiveCountry(group.country)
+                      if (group.states.length === 1) {
+                        setActiveState(group.states[0])
+                      } else {
+                        setActiveState(null)
+                      }
+                    }}
+                    style={{
+                      padding: '9px 20px',
+                      borderRadius: '100px',
+                      border: isActiveCountry ? '1px solid #d4891a' : '1px solid rgba(255,255,255,0.12)',
+                      background: isActiveCountry ? '#d4891a' : 'transparent',
+                      color: isActiveCountry ? '#0c0f15' : '#ffffff',
+                      fontSize: '13px',
+                      fontWeight: '700',
+                      cursor: 'pointer',
+                      whiteSpace: 'nowrap',
+                    }}
+                  >
+                    {group.country}
+                  </button>
+                )
+              })}
             </div>
           </Reveal>
 
+          {activeCountry === 'India' && (
+            <Reveal delay={180}>
+              <div style={{ display: 'flex', gap: '8px', flexWrap: isMobile ? 'nowrap' : 'wrap', overflowX: isMobile ? 'auto' : 'visible', paddingBottom: isMobile ? '8px' : '0', marginBottom: '32px', scrollbarWidth: 'none' }}>
+                {COUNTRY_GROUPS.find((group) => group.country === 'India').states.map((stateLabel) => (
+                  <button
+                    key={stateLabel}
+                    onClick={() => setActiveState(stateLabel)}
+                    style={{
+                      padding: '8px 16px',
+                      borderRadius: '100px',
+                      border: activeState === stateLabel ? '1px solid #f0b445' : '1px solid rgba(255,255,255,0.1)',
+                      background: activeState === stateLabel ? 'rgba(240,180,69,0.15)' : 'rgba(255,255,255,0.03)',
+                      color: activeState === stateLabel ? '#f0b445' : '#7a8899',
+                      fontSize: '12px',
+                      fontWeight: '600',
+                      cursor: 'pointer',
+                      whiteSpace: 'nowrap',
+                    }}
+                  >
+                    {stateLabel}
+                  </button>
+                ))}
+              </div>
+            </Reveal>
+          )}
+
+          {activeCountry !== 'India' && <div style={{ marginBottom: '32px' }} />}
+
           {!activeState ? (
             <div style={{ textAlign: 'center', padding: '40px 20px', color: '#7a8899' }}>
-              Select a state above to view packages.
+              {activeCountry === 'India' ? 'Select a state above to view packages.' : 'Select a country above to view packages.'}
             </div>
           ) : filteredPackages.length === 0 ? (
             <div style={{ textAlign: 'center', padding: '60px 20px', color: '#7a8899' }}>
