@@ -88,8 +88,8 @@ export default function Navbar() {
             />
           </div>
           <div>
-            <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: '18px', fontWeight: '700', color: '#ffffff' }}>Vasudhara</div>
-            <div style={{ fontSize: '10px', color: '#7a8899', letterSpacing: '0.5px' }}>Tour and Travels</div>
+            <div style={{ fontFamily: "'Playfair Display', serif", fontStyle: 'italic', fontSize: '19px', fontWeight: '700', color: '#f0b445', letterSpacing: '0.3px' }}>Vasudhara</div>
+            <div style={{ fontFamily: "'Playfair Display', serif", fontStyle: 'italic', fontSize: '11px', color: '#d4891a', letterSpacing: '0.5px' }}>Tours and Travels</div>
           </div>
         </Link>
 
