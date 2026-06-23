@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
-import { adminLogout, getEnquiries, updateEnquiryStatus } from '../lib/firebase'
+import { adminLogout, getEnquiries, readLocalEnquiries, updateEnquiryStatus } from '../lib/firebase'
 import logo from '../assets/vasudhara-logo.png'
 
 const statusColors = {
@@ -26,8 +26,9 @@ function formatDate(value) {
 export default function AdminDashboard() {
   const { user } = useAuth()
   const navigate = useNavigate()
-  const [enquiries, setEnquiries] = useState([])
-  const [loading, setLoading] = useState(true)
+  const [enquiries, setEnquiries] = useState(() => readLocalEnquiries())
+  const [loading, setLoading] = useState(false)
+  const [refreshing, setRefreshing] = useState(false)
   const [loadError, setLoadError] = useState('')
   const [selected, setSelected] = useState(null)
   const [filter, setFilter] = useState('all')
@@ -41,7 +42,11 @@ export default function AdminDashboard() {
   }, [])
 
   const load = async () => {
-    setLoading(true)
+    // If we already have cached data on screen, show a lightweight
+    // "refreshing" indicator instead of blanking the whole table.
+    const hasCachedData = enquiries.length > 0
+    setLoading(!hasCachedData)
+    setRefreshing(hasCachedData)
     setLoadError('')
     try {
       setEnquiries(await getEnquiries())
@@ -50,6 +55,7 @@ export default function AdminDashboard() {
       setLoadError('We could not load enquiries from Firebase, so only locally saved data may be available.')
     } finally {
       setLoading(false)
+      setRefreshing(false)
     }
   }
 
@@ -150,7 +156,7 @@ export default function AdminDashboard() {
               {status}
             </button>
           ))}
-          <button onClick={load} style={{ marginLeft: 'auto', background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '7px', padding: '7px 14px', color: '#7a8899', fontSize: '12px', cursor: 'pointer' }}>Refresh</button>
+          <button onClick={load} disabled={refreshing} style={{ marginLeft: 'auto', background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '7px', padding: '7px 14px', color: '#7a8899', fontSize: '12px', cursor: refreshing ? 'not-allowed' : 'pointer' }}>{refreshing ? 'Refreshing...' : 'Refresh'}</button>
         </div>
 
         {loadError && (
