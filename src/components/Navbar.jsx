@@ -87,6 +87,10 @@ export default function Navbar() {
               }}
             />
           </div>
+          <div>
+            <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: '18px', fontWeight: '700', color: '#ffffff' }}>Vasudhara</div>
+            <div style={{ fontSize: '10px', color: '#7a8899', letterSpacing: '0.5px' }}>Tour and Travels</div>
+          </div>
         </Link>
 
         {!isMobile && (
