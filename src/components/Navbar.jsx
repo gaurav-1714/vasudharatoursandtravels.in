@@ -54,7 +54,7 @@ export default function Navbar() {
           right: 0,
           zIndex: 100,
           padding: '0 20px',
-          height: '64px',
+          height: '76px',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'space-between',
@@ -67,8 +67,8 @@ export default function Navbar() {
         <Link to="/" style={{ display: 'flex', alignItems: 'center', gap: '10px', textDecoration: 'none' }} onClick={() => setOpen(false)}>
           <div
             style={{
-              width: '156px',
-              height: '44px',
+              width: '220px',
+              height: '60px',
               background: 'transparent',
               borderRadius: '12px',
               display: 'flex',
@@ -86,10 +86,6 @@ export default function Navbar() {
                 objectFit: 'contain',
               }}
             />
-          </div>
-          <div>
-            <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: '18px', fontWeight: '700', color: '#ffffff' }}>Vasudhara</div>
-            <div style={{ fontSize: '10px', color: '#7a8899', letterSpacing: '0.5px' }}>Tour and Travels</div>
           </div>
         </Link>
 
@@ -173,7 +169,7 @@ export default function Navbar() {
         <div
           style={{
             position: 'fixed',
-            top: '64px',
+            top: '76px',
             left: 0,
             right: 0,
             bottom: 0,
