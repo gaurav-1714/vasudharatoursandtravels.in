@@ -495,6 +495,10 @@ export default function Home() {
               <div style={{ marginTop: '16px', display: 'flex', flexDirection: 'column', gap: '8px' }}>
                 <a href={`tel:${CONTACT_PHONE_LINK}`} style={{ color: '#f0b445', fontSize: '13px', textDecoration: 'none' }}>{CONTACT_PHONE_DISPLAY}</a>
                 <a href={`tel:${CONTACT_PHONE_2_LINK}`} style={{ color: '#f0b445', fontSize: '13px', textDecoration: 'none' }}>{CONTACT_PHONE_2_DISPLAY}</a>
+                <a href={`mailto:${CONTACT_EMAIL}`} style={{ color: '#f0b445', fontSize: '13px', textDecoration: 'none' }}>{CONTACT_EMAIL}</a>
+                <a href={LOCATION_MAP_URL} target="_blank" rel="noopener noreferrer" style={{ color: '#f0b445', fontSize: '13px', textDecoration: 'none', fontWeight: '600' }}>
+                  View on Google Maps
+                </a>
                 <div style={{ color: '#7a8899', fontSize: '13px', lineHeight: '1.6' }}>{CONTACT_ADDRESS}</div>
                 <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px' }}>
                   {SOCIAL_LINKS.map((item) => (
