@@ -8,8 +8,11 @@ import logo from '../assets/vasudhara-logo.png'
 
 const CONTACT_PHONE_DISPLAY = '+919046605444'
 const CONTACT_PHONE_LINK = '+919046605444'
-const CONTACT_EMAIL = 'vasudharatravel@gmail.com'
+const CONTACT_PHONE_2_DISPLAY = '+919046305444'
+const CONTACT_PHONE_2_LINK = '+919046305444'
+const CONTACT_EMAIL = 'wellbeing@vasudharatoursandtravels.in'
 const CONTACT_ADDRESS = 'Park Tower , Mahishmari, Milan More Rd, Siliguri, West Bengal 734003'
+const LOCATION_MAP_URL = 'https://maps.app.goo.gl/RVskCjzAcn2RXvU4A'
 const COUNTRY_GROUPS = [
   {
     country: 'India',
@@ -28,11 +31,11 @@ const COUNTRY_GROUPS = [
   },
   {
     country: 'Nepal',
-    states: ['Nepal'],
+    states: ['Kathmandu', 'Pokhara'],
   },
   {
     country: 'Bhutan',
-    states: ['Bhutan'],
+    states: ['Paro', 'Thimphu'],
   },
 ]
 const SOCIAL_LINKS = [
@@ -126,21 +129,6 @@ export default function Home() {
     setActiveState(stateLabel)
     scrollToSection('#packages')
   }
-
-  const destinationLinks = [
-    { label: 'Ladakh', state: 'Ladakh' },
-    { label: 'Jammu & Kashmir', state: 'Jammu & Kashmir' },
-    { label: 'Himachal Pradesh', state: 'Himachal Pradesh' },
-    { label: 'Uttarakhand', state: 'Uttarakhand' },
-    { label: 'Darjeeling', state: 'Darjeeling' },
-    { label: 'Sikkim', state: 'Sikkim' },
-    { label: 'Arunachal Pradesh', state: 'Arunachal Pradesh' },
-    { label: 'Assam', state: 'Assam' },
-    { label: 'Meghalaya', state: 'Meghalaya' },
-    { label: 'Kerala', state: 'Kerala' },
-    { label: 'Nepal', state: 'Nepal' },
-    { label: 'Bhutan', state: 'Bhutan' },
-  ]
 
   const quickLinks = [
     { label: 'All Packages', action: () => { setActiveState(null); setActiveCountry(null); scrollToSection('#packages') } },
@@ -277,62 +265,71 @@ export default function Home() {
             </div>
           </Reveal>
 
-          {activeCountry === 'India' && (
-            <Reveal delay={180}>
-              <div style={{ display: 'flex', gap: '8px', flexWrap: isMobile ? 'nowrap' : 'wrap', overflowX: isMobile ? 'auto' : 'visible', paddingBottom: isMobile ? '8px' : '0', marginBottom: '32px', scrollbarWidth: 'none' }}>
-                {COUNTRY_GROUPS.find((group) => group.country === 'India').states.map((stateLabel) => (
-                  <button
-                    key={stateLabel}
-                    onClick={() => setActiveState(stateLabel)}
-                    style={{
-                      padding: '8px 16px',
-                      borderRadius: '100px',
-                      border: activeState === stateLabel ? '1px solid #f0b445' : '1px solid rgba(255,255,255,0.1)',
-                      background: activeState === stateLabel ? 'rgba(240,180,69,0.15)' : 'rgba(255,255,255,0.03)',
-                      color: activeState === stateLabel ? '#f0b445' : '#7a8899',
-                      fontSize: '12px',
-                      fontWeight: '600',
-                      cursor: 'pointer',
-                      whiteSpace: 'nowrap',
-                    }}
-                  >
-                    {stateLabel}
-                  </button>
-                ))}
-              </div>
-            </Reveal>
-          )}
+          {(() => {
+            const activeGroup = COUNTRY_GROUPS.find((group) => group.country === activeCountry)
+            const hasSubStates = activeGroup && activeGroup.states.length > 1
 
-          {activeCountry !== 'India' && <div style={{ marginBottom: '32px' }} />}
+            return (
+              <>
+                {hasSubStates && (
+                  <Reveal delay={180}>
+                    <div style={{ display: 'flex', gap: '8px', flexWrap: isMobile ? 'nowrap' : 'wrap', overflowX: isMobile ? 'auto' : 'visible', paddingBottom: isMobile ? '8px' : '0', marginBottom: '32px', scrollbarWidth: 'none' }}>
+                      {activeGroup.states.map((stateLabel) => (
+                        <button
+                          key={stateLabel}
+                          onClick={() => setActiveState(stateLabel)}
+                          style={{
+                            padding: '8px 16px',
+                            borderRadius: '100px',
+                            border: activeState === stateLabel ? '1px solid #f0b445' : '1px solid rgba(255,255,255,0.1)',
+                            background: activeState === stateLabel ? 'rgba(240,180,69,0.15)' : 'rgba(255,255,255,0.03)',
+                            color: activeState === stateLabel ? '#f0b445' : '#7a8899',
+                            fontSize: '12px',
+                            fontWeight: '600',
+                            cursor: 'pointer',
+                            whiteSpace: 'nowrap',
+                          }}
+                        >
+                          {stateLabel}
+                        </button>
+                      ))}
+                    </div>
+                  </Reveal>
+                )}
 
-          {!activeState ? (
-            <div style={{ textAlign: 'center', padding: '40px 20px', color: '#7a8899' }}>
-              {activeCountry === 'India' ? 'Select a state above to view packages.' : 'Select a country above to view packages.'}
-            </div>
-          ) : filteredPackages.length === 0 ? (
-            <div style={{ textAlign: 'center', padding: '60px 20px', color: '#7a8899' }}>
-              No packages available for {activeState} yet.{' '}
-              <a
-                href="#enquiry"
-                onClick={(event) => {
-                  event.preventDefault()
-                  document.querySelector('#enquiry')?.scrollIntoView({ behavior: 'smooth' })
-                }}
-                style={{ color: '#f0b445', textDecoration: 'none', fontWeight: '700' }}
-              >
-                Send an enquiry
-              </a>
-              .
-            </div>
-          ) : (
-            <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : isTablet ? 'repeat(2, 1fr)' : 'repeat(3, 1fr)', gap: '22px' }}>
-              {filteredPackages.map((pkg, index) => (
-                <Reveal key={pkg.id} delay={index * 60}>
-                  <PackageCard pkg={pkg} />
-                </Reveal>
-              ))}
-            </div>
-          )}
+                {!hasSubStates && <div style={{ marginBottom: '32px' }} />}
+
+                {!activeState ? (
+                  <div style={{ textAlign: 'center', padding: '40px 20px', color: '#7a8899' }}>
+                    {hasSubStates ? `Select a destination above to view packages.` : 'Select a country above to view packages.'}
+                  </div>
+                ) : filteredPackages.length === 0 ? (
+                  <div style={{ textAlign: 'center', padding: '60px 20px', color: '#7a8899' }}>
+                    No packages available for {activeState} yet.{' '}
+                    <a
+                      href="#enquiry"
+                      onClick={(event) => {
+                        event.preventDefault()
+                        document.querySelector('#enquiry')?.scrollIntoView({ behavior: 'smooth' })
+                      }}
+                      style={{ color: '#f0b445', textDecoration: 'none', fontWeight: '700' }}
+                    >
+                      Send an enquiry
+                    </a>
+                    .
+                  </div>
+                ) : (
+                  <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : isTablet ? 'repeat(2, 1fr)' : 'repeat(3, 1fr)', gap: '22px' }}>
+                    {filteredPackages.map((pkg, index) => (
+                      <Reveal key={pkg.id} delay={index * 60}>
+                        <PackageCard pkg={pkg} />
+                      </Reveal>
+                    ))}
+                  </div>
+                )}
+              </>
+            )
+          })()}
         </div>
       </section>
 
@@ -446,7 +443,11 @@ export default function Home() {
               ))}
               <div style={{ marginTop: '32px', display: 'flex', flexDirection: 'column', gap: '10px' }}>
                 <a href={`tel:${CONTACT_PHONE_LINK}`} style={{ color: '#f0b445', fontSize: '14px', textDecoration: 'none' }}>{CONTACT_PHONE_DISPLAY}</a>
+                <a href={`tel:${CONTACT_PHONE_2_LINK}`} style={{ color: '#f0b445', fontSize: '14px', textDecoration: 'none' }}>{CONTACT_PHONE_2_DISPLAY}</a>
                 <a href={`mailto:${CONTACT_EMAIL}`} style={{ color: '#f0b445', fontSize: '14px', textDecoration: 'none' }}>{CONTACT_EMAIL}</a>
+                <a href={LOCATION_MAP_URL} target="_blank" rel="noopener noreferrer" style={{ color: '#f0b445', fontSize: '13px', textDecoration: 'none', fontWeight: '600' }}>
+                  View on Google Maps
+                </a>
                 <div style={{ color: '#7a8899', fontSize: '13px' }}>{CONTACT_ADDRESS}</div>
                 <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px', marginTop: '6px' }}>
                   {SOCIAL_LINKS.map((item) => (
@@ -476,7 +477,7 @@ export default function Home() {
 
       <footer style={{ background: '#0a0c12', borderTop: '1px solid rgba(255,255,255,0.06)', padding: isMobile ? '40px 20px 0' : '56px 40px 0' }}>
         <div style={{ maxWidth: '1180px', margin: '0 auto' }}>
-          <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : isTablet ? '1fr 1fr' : '2fr 1fr 1fr 1fr', gap: isMobile ? '28px' : '40px', paddingBottom: '40px', borderBottom: '1px solid rgba(255,255,255,0.06)' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : isTablet ? '1fr 1fr' : '2fr 1fr 1fr', gap: isMobile ? '28px' : '40px', paddingBottom: '40px', borderBottom: '1px solid rgba(255,255,255,0.06)' }}>
             <div>
               <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '16px' }}>
                 <div style={{ width: '168px', height: '48px', background: 'transparent', borderRadius: '12px', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}>
@@ -493,6 +494,7 @@ export default function Home() {
               </p>
               <div style={{ marginTop: '16px', display: 'flex', flexDirection: 'column', gap: '8px' }}>
                 <a href={`tel:${CONTACT_PHONE_LINK}`} style={{ color: '#f0b445', fontSize: '13px', textDecoration: 'none' }}>{CONTACT_PHONE_DISPLAY}</a>
+                <a href={`tel:${CONTACT_PHONE_2_LINK}`} style={{ color: '#f0b445', fontSize: '13px', textDecoration: 'none' }}>{CONTACT_PHONE_2_DISPLAY}</a>
                 <div style={{ color: '#7a8899', fontSize: '13px', lineHeight: '1.6' }}>{CONTACT_ADDRESS}</div>
                 <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px' }}>
                   {SOCIAL_LINKS.map((item) => (
@@ -508,19 +510,6 @@ export default function Home() {
                   ))}
                 </div>
               </div>
-            </div>
-            <div>
-              <div style={{ fontSize: '13px', fontWeight: '700', color: '#ffffff', marginBottom: '14px' }}>Destinations</div>
-              {destinationLinks.map((item) => (
-                <button
-                  key={item.label}
-                  type="button"
-                  onClick={() => openState(item.state)}
-                  style={{ display: 'block', width: '100%', marginBottom: '8px', color: '#7a8899', fontSize: '13px', background: 'none', border: 'none', padding: 0, cursor: 'pointer', textAlign: 'left' }}
-                >
-                  {item.label}
-                </button>
-              ))}
             </div>
             <div>
               <div style={{ fontSize: '13px', fontWeight: '700', color: '#ffffff', marginBottom: '14px' }}>Quick Links</div>
