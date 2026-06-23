@@ -5,7 +5,6 @@ import PackageCard from '../components/PackageCard'
 import RotatingHeroBackground from '../components/RotatingHeroBackground'
 import { DESTINATIONS, PACKAGES, TESTIMONIALS } from '../lib/data'
 import logo from '../assets/vasudhara-logo.png'
-import msmeCertificate from '../assets/msme-certificate.png'
 
 const CONTACT_PHONE_DISPLAY = '+919046605444'
 const CONTACT_PHONE_LINK = '+919046605444'
@@ -14,91 +13,7 @@ const CONTACT_PHONE_2_LINK = '+919046305444'
 const CONTACT_EMAIL = 'wellbeing@vasudharatoursandtravels.in'
 const CONTACT_ADDRESS = 'Park Tower , Mahishmari, Milan More Rd, Siliguri, West Bengal 734003'
 const LOCATION_MAP_URL = 'https://maps.app.goo.gl/RVskCjzAcn2RXvU4A'
-const COUNTRY_GROUPS = [},
-{
-country: 'Nepal',
-    states: ['Kathmandu', 'Pokhara'],
-    states: ['Kathmandu', 'Pokhara', 'Mustang'],
-},
-{
-country: 'Bhutan',
-    states: ['Paro', 'Thimphu'],
-    states: ['Paro', 'Thimphu', 'Punakha'],
-},
-]
-const SOCIAL_LINKS = [
-@@ -115,7 +115,6 @@ function SectionHeader({ eyebrow, title, desc, center = false }) {
-export default function Home() {
-const [activeState, setActiveState] = useState(null)
-const [activeCountry, setActiveCountry] = useState(null)
-  const [searchDest, setSearchDest] = useState('')
-const [activeInfoPanel, setActiveInfoPanel] = useState(null)
-const { isMobile, isTablet } = useBreakpoint()
-
-@@ -171,10 +170,7 @@ export default function Home() {
-
-const filteredPackages = PACKAGES.filter((item) => {
-if (!activeState) return false
-    const matchState = Array.isArray(item.states) && item.states.includes(activeState)
-    const q = searchDest.toLowerCase()
-    const matchSearch = !q || item.destination.toLowerCase().includes(q) || item.title.toLowerCase().includes(q)
-    return matchState && matchSearch
-    return Array.isArray(item.states) && item.states.includes(activeState)
-})
-
-return (
-@@ -222,12 +218,15 @@ export default function Home() {
-<section id="packages" style={{ padding: isMobile ? '60px 20px' : '80px 40px' }}>
-<div style={{ maxWidth: '1180px', margin: '0 auto' }}>
-<Reveal>
-            <SectionHeader eyebrow="Explore by State" title={<>Choose a <em style={{ fontStyle: 'italic', color: '#f0b445' }}>Destination</em></>} desc="Tap a state to view available packages. If you don't see what you want, send an enquiry and we will customize a trip for you." />
-          </Reveal>
-
-          <Reveal delay={100}>
-            <div style={{ marginBottom: '20px' }}>
-              <input type="text" placeholder="Search destination or package..." value={searchDest} onChange={(event) => setSearchDest(event.target.value)} style={{ width: '100%', maxWidth: '380px', background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '10px', padding: '11px 16px', color: '#ffffff', fontSize: '14px', fontFamily: "'DM Sans', sans-serif", outline: 'none' }} />
-            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '24px', flexWrap: 'wrap' }}>
-              <SectionHeader eyebrow="Explore by State" title={<>Choose a <em style={{ fontStyle: 'italic', color: '#f0b445' }}>Destination</em></>} desc="Tap a state to view available packages. If you don't see what you want, send an enquiry and we will customize a trip for you." />
-              {!isMobile && (
-                <img
-                  src={logo}
-                  alt="Vasudhara Tours and Travels"
-                  style={{ width: '180px', height: 'auto', objectFit: 'contain', flexShrink: 0, marginBottom: '40px' }}
-                />
-              )}
-</div>
-</Reveal>
-
-@@ -336,7 +335,7 @@ export default function Home() {
-<section id="about" style={{ padding: isMobile ? '60px 20px' : '80px 40px', background: '#0e1219' }}>
-<div style={{ maxWidth: '1180px', margin: '0 auto' }}>
-<Reveal>
-            <SectionHeader center eyebrow="Why Choose Vasudhara" title={<>Local Experts, <em style={{ fontStyle: 'italic', color: '#f0b445' }}>Real Journeys</em></>} desc="Born in Siliguri, the team understands the routes, the seasons, and the little details that shape a smooth mountain holiday." />
-            <SectionHeader center eyebrow="Why Choose Vasudhara" title={<>Local Experts, <em style={{ fontStyle: 'italic', color: '#f0b445' }}>Real Journeys</em></>} desc="The team understands the routes, the seasons, and the little details that shape a smooth mountain holiday." />
-</Reveal>
-<div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr 1fr' : 'repeat(4, 1fr)', gap: '16px' }}>
-{[
-@@ -366,7 +365,19 @@ export default function Home() {
-<Reveal key={destination.id} delay={index * 70}>
-<div
-onClick={() => {
-                    setActiveState(destination.state || destination.name)
-                    const label = destination.state || destination.name
-                    const matchingGroup = COUNTRY_GROUPS.find(
-                      (group) => group.country === label || group.states.includes(label),
-                    )
-
-                    if (matchingGroup && matchingGroup.states.length > 1) {
-                      // Countries with multiple sub-destinations (e.g. Nepal, Bhutan)
-                      // open the country tab so the visitor can pick a specific place.
-                      setActiveCountry(matchingGroup.country)
-                      setActiveState(null)
-                    } else {
-                      openState(label)
-                    }
-document.querySelector('#packages')?.scrollIntoView({ behavior: 'smooth' })
-}}
-style={{ position: 'relative', borderRadius: '12px', overflow: 'hidden', cursor: 'pointer', aspectRatio: isMobile ? '4/3' : '3/2' }}
+const COUNTRY_GROUPS = [
   {
     country: 'India',
     states: [
@@ -267,6 +182,9 @@ export default function Home() {
         <RotatingHeroBackground alt="Himalayas" />
 
         <div style={{ position: 'relative', zIndex: 2, textAlign: 'center', maxWidth: '780px', width: '100%' }}>
+          <div style={{ display: 'inline-block', background: 'rgba(212,137,26,0.15)', border: '1px solid rgba(212,137,26,0.4)', color: '#f0b445', fontSize: '11px', fontWeight: '600', letterSpacing: '2px', textTransform: 'uppercase', padding: '6px 18px', borderRadius: '100px', marginBottom: '24px' }}>
+            Siliguri-Based - Est. 2008
+          </div>
           <h1 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 'clamp(38px, 7vw, 82px)', fontWeight: '300', color: '#ffffff', lineHeight: '1.08', marginBottom: '36px', letterSpacing: '-0.02em' }}>
             Journeys into the
             <br />
@@ -638,15 +556,6 @@ export default function Home() {
               </a>
             </div>
           </div>
-
-          <div style={{ padding: isMobile ? '24px 0' : '28px 0', display: 'flex', justifyContent: 'center' }}>
-            <img
-              src={msmeCertificate}
-              alt="MSME Certificate - Govt. of India"
-              style={{ height: isMobile ? '48px' : '60px', width: 'auto', objectFit: 'contain' }}
-            />
-          </div>
-
           <div style={{ padding: '20px 0', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '12px', fontSize: '12px', color: '#4a5568' }}>
             <div>(c) 2026 Vasudhara Tour and Travels. Siliguri, West Bengal.</div>
             <div>Built with React and ready for Vercel deployment.</div>
