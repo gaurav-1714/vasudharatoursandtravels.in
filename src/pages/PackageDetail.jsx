@@ -51,26 +51,90 @@ export default function PackageDetail() {
       </div>
 
       <div style={{ paddingTop: '56px', position: 'relative', height: isMobile ? '280px' : '420px', overflow: 'hidden' }}>
-        <img src={allImages[imageIndex]} alt={pkg.title} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-        <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(12,15,21,1) 0%, rgba(12,15,21,0.2) 50%, transparent 100%)' }} />
+        <img src={allImages[imageIndex]} alt={pkg.title} style={{ width: '100%', height: '100%', objectFit: 'cover', position: 'relative', zIndex: 0 }} />
+        <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(12,15,21,1) 0%, rgba(12,15,21,0.2) 50%, transparent 100%)', zIndex: 1, pointerEvents: 'none' }} />
 
         {allImages.length > 1 && (
-          <div style={{ position: 'absolute', bottom: '20px', left: '50%', transform: 'translateX(-50%)', display: 'flex', gap: '8px' }}>
-            {allImages.map((_, index) => (
-              <button key={index} onClick={() => setImageIndex(index)} style={{ width: index === imageIndex ? '20px' : '8px', height: '8px', borderRadius: '4px', background: index === imageIndex ? '#d4891a' : 'rgba(255,255,255,0.4)', border: 'none', cursor: 'pointer' }} />
-            ))}
-          </div>
+          <>
+            <button
+              type="button"
+              onClick={() => setImageIndex((current) => (current - 1 + allImages.length) % allImages.length)}
+              aria-label="Previous image"
+              style={{
+                position: 'absolute',
+                top: '50%',
+                left: isMobile ? '10px' : '20px',
+                transform: 'translateY(-50%)',
+                width: '36px',
+                height: '36px',
+                borderRadius: '50%',
+                background: 'rgba(12,15,21,0.55)',
+                border: '1px solid rgba(255,255,255,0.25)',
+                color: '#ffffff',
+                fontSize: '16px',
+                cursor: 'pointer',
+                zIndex: 2,
+                pointerEvents: 'auto',
+              }}
+            >
+              &#8249;
+            </button>
+            <button
+              type="button"
+              onClick={() => setImageIndex((current) => (current + 1) % allImages.length)}
+              aria-label="Next image"
+              style={{
+                position: 'absolute',
+                top: '50%',
+                right: isMobile ? '10px' : '20px',
+                transform: 'translateY(-50%)',
+                width: '36px',
+                height: '36px',
+                borderRadius: '50%',
+                background: 'rgba(12,15,21,0.55)',
+                border: '1px solid rgba(255,255,255,0.25)',
+                color: '#ffffff',
+                fontSize: '16px',
+                cursor: 'pointer',
+                zIndex: 2,
+                pointerEvents: 'auto',
+              }}
+            >
+              &#8250;
+            </button>
+
+            <div style={{ position: 'absolute', bottom: '20px', left: '50%', transform: 'translateX(-50%)', display: 'flex', gap: '10px', zIndex: 2 }}>
+              {allImages.map((_, index) => (
+                <button
+                  key={index}
+                  type="button"
+                  onClick={() => setImageIndex(index)}
+                  aria-label={`Show image ${index + 1}`}
+                  style={{
+                    width: index === imageIndex ? '22px' : '10px',
+                    height: '10px',
+                    borderRadius: '5px',
+                    background: index === imageIndex ? '#d4891a' : 'rgba(255,255,255,0.5)',
+                    border: 'none',
+                    padding: 0,
+                    cursor: 'pointer',
+                    pointerEvents: 'auto',
+                  }}
+                />
+              ))}
+            </div>
+          </>
         )}
       </div>
 
       <div style={{ maxWidth: '1100px', margin: '0 auto', padding: isMobile ? '0 20px 60px' : '0 40px 80px' }}>
         <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 380px', gap: isMobile ? '32px' : '48px', alignItems: 'start' }}>
           <div>
-            <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap', marginBottom: '14px', marginTop: '-10px' }}>
-              <span style={{ background: 'rgba(212,137,26,0.15)', border: '1px solid rgba(212,137,26,0.3)', color: '#d4891a', fontSize: '10px', fontWeight: '700', padding: '4px 12px', borderRadius: '100px', textTransform: 'uppercase', letterSpacing: '1px' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap', marginBottom: '14px', marginTop: '18px', position: 'relative', zIndex: 2 }}>
+              <span style={{ display: 'inline-block', whiteSpace: 'nowrap', background: 'rgba(212,137,26,0.15)', border: '1px solid rgba(212,137,26,0.3)', color: '#d4891a', fontSize: '10px', fontWeight: '700', padding: '4px 12px', borderRadius: '100px', textTransform: 'uppercase', letterSpacing: '1px' }}>
                 {pkg.category}
               </span>
-              {pkg.badge && <span style={{ background: 'rgba(255,255,255,0.08)', color: '#ffffff', fontSize: '10px', fontWeight: '600', padding: '4px 12px', borderRadius: '100px' }}>{pkg.badge}</span>}
+              {pkg.badge && <span style={{ display: 'inline-block', whiteSpace: 'nowrap', background: 'rgba(255,255,255,0.08)', color: '#ffffff', fontSize: '10px', fontWeight: '600', padding: '4px 12px', borderRadius: '100px' }}>{pkg.badge}</span>}
             </div>
 
             <h1 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: isMobile ? '30px' : '44px', fontWeight: '300', color: '#ffffff', lineHeight: '1.15', marginBottom: '12px' }}>{pkg.title}</h1>
