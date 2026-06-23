@@ -15,6 +15,23 @@ import {
 } from 'firebase/firestore'
 import { PACKAGES } from './data'
 
+// Wraps a promise so it never hangs forever — rejects after `ms` if the
+// underlying call (e.g. a slow/blocked Firestore request) hasn't settled.
+function withTimeout(promise, ms, timeoutMessage) {
+  return new Promise((resolve, reject) => {
+    const timer = setTimeout(() => reject(new Error(timeoutMessage)), ms)
+    promise
+      .then((value) => {
+        clearTimeout(timer)
+        resolve(value)
+      })
+      .catch((error) => {
+        clearTimeout(timer)
+        reject(error)
+      })
+  })
+}
+
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
   authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
@@ -45,7 +62,7 @@ if (app && typeof window !== 'undefined' && window.location.hostname !== 'localh
 
 const LOCAL_ENQUIRIES_KEY = 'vasudhara-enquiries'
 
-function readLocalEnquiries() {
+export function readLocalEnquiries() {
   if (typeof window === 'undefined') {
     return []
   }
@@ -90,11 +107,15 @@ export async function submitEnquiry(data) {
 
   if (db) {
     try {
-      const docRef = await addDoc(collection(db, 'enquiries'), {
-        ...data,
-        status: 'new',
-        createdAt: serverTimestamp(),
-      })
+      const docRef = await withTimeout(
+        addDoc(collection(db, 'enquiries'), {
+          ...data,
+          status: 'new',
+          createdAt: serverTimestamp(),
+        }),
+        10000,
+        'Saving enquiry to Firestore timed out.',
+      )
 
       upsertLocalEnquiry({
         ...localRecord,
@@ -145,7 +166,11 @@ export async function getEnquiries() {
 
   try {
     const enquiriesQuery = query(collection(db, 'enquiries'), orderBy('createdAt', 'desc'))
-    const snap = await getDocs(enquiriesQuery)
+    const snap = await withTimeout(
+      getDocs(enquiriesQuery),
+      8000,
+      'Loading enquiries from Firestore timed out.',
+    )
     const remote = snap.docs.map((item) => normalizeEnquiry({ id: item.id, ...item.data() }, item.id))
 
     if (remote.length > 0) {
