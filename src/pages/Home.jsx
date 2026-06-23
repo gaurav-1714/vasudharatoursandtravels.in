@@ -31,11 +31,11 @@ const COUNTRY_GROUPS = [
   },
   {
     country: 'Nepal',
-    states: ['Kathmandu', 'Pokhara'],
+    states: ['Kathmandu', 'Pokhara', 'Mustang'],
   },
   {
     country: 'Bhutan',
-    states: ['Paro', 'Thimphu'],
+    states: ['Paro', 'Thimphu', 'Punakha'],
   },
 ]
 const SOCIAL_LINKS = [
@@ -115,7 +115,6 @@ function SectionHeader({ eyebrow, title, desc, center = false }) {
 export default function Home() {
   const [activeState, setActiveState] = useState(null)
   const [activeCountry, setActiveCountry] = useState(null)
-  const [searchDest, setSearchDest] = useState('')
   const [activeInfoPanel, setActiveInfoPanel] = useState(null)
   const { isMobile, isTablet } = useBreakpoint()
 
@@ -171,10 +170,7 @@ export default function Home() {
 
   const filteredPackages = PACKAGES.filter((item) => {
     if (!activeState) return false
-    const matchState = Array.isArray(item.states) && item.states.includes(activeState)
-    const q = searchDest.toLowerCase()
-    const matchSearch = !q || item.destination.toLowerCase().includes(q) || item.title.toLowerCase().includes(q)
-    return matchState && matchSearch
+    return Array.isArray(item.states) && item.states.includes(activeState)
   })
 
   return (
@@ -222,12 +218,15 @@ export default function Home() {
       <section id="packages" style={{ padding: isMobile ? '60px 20px' : '80px 40px' }}>
         <div style={{ maxWidth: '1180px', margin: '0 auto' }}>
           <Reveal>
-            <SectionHeader eyebrow="Explore by State" title={<>Choose a <em style={{ fontStyle: 'italic', color: '#f0b445' }}>Destination</em></>} desc="Tap a state to view available packages. If you don't see what you want, send an enquiry and we will customize a trip for you." />
-          </Reveal>
-
-          <Reveal delay={100}>
-            <div style={{ marginBottom: '20px' }}>
-              <input type="text" placeholder="Search destination or package..." value={searchDest} onChange={(event) => setSearchDest(event.target.value)} style={{ width: '100%', maxWidth: '380px', background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '10px', padding: '11px 16px', color: '#ffffff', fontSize: '14px', fontFamily: "'DM Sans', sans-serif", outline: 'none' }} />
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '24px', flexWrap: 'wrap' }}>
+              <SectionHeader eyebrow="Explore by State" title={<>Choose a <em style={{ fontStyle: 'italic', color: '#f0b445' }}>Destination</em></>} desc="Tap a state to view available packages. If you don't see what you want, send an enquiry and we will customize a trip for you." />
+              {!isMobile && (
+                <img
+                  src={logo}
+                  alt="Vasudhara Tours and Travels"
+                  style={{ width: '180px', height: 'auto', objectFit: 'contain', flexShrink: 0, marginBottom: '40px' }}
+                />
+              )}
             </div>
           </Reveal>
 
@@ -336,7 +335,7 @@ export default function Home() {
       <section id="about" style={{ padding: isMobile ? '60px 20px' : '80px 40px', background: '#0e1219' }}>
         <div style={{ maxWidth: '1180px', margin: '0 auto' }}>
           <Reveal>
-            <SectionHeader center eyebrow="Why Choose Vasudhara" title={<>Local Experts, <em style={{ fontStyle: 'italic', color: '#f0b445' }}>Real Journeys</em></>} desc="Born in Siliguri, the team understands the routes, the seasons, and the little details that shape a smooth mountain holiday." />
+            <SectionHeader center eyebrow="Why Choose Vasudhara" title={<>Local Experts, <em style={{ fontStyle: 'italic', color: '#f0b445' }}>Real Journeys</em></>} desc="The team understands the routes, the seasons, and the little details that shape a smooth mountain holiday." />
           </Reveal>
           <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr 1fr' : 'repeat(4, 1fr)', gap: '16px' }}>
             {[
@@ -366,7 +365,19 @@ export default function Home() {
               <Reveal key={destination.id} delay={index * 70}>
                 <div
                   onClick={() => {
-                    setActiveState(destination.state || destination.name)
+                    const label = destination.state || destination.name
+                    const matchingGroup = COUNTRY_GROUPS.find(
+                      (group) => group.country === label || group.states.includes(label),
+                    )
+
+                    if (matchingGroup && matchingGroup.states.length > 1) {
+                      // Countries with multiple sub-destinations (e.g. Nepal, Bhutan)
+                      // open the country tab so the visitor can pick a specific place.
+                      setActiveCountry(matchingGroup.country)
+                      setActiveState(null)
+                    } else {
+                      openState(label)
+                    }
                     document.querySelector('#packages')?.scrollIntoView({ behavior: 'smooth' })
                   }}
                   style={{ position: 'relative', borderRadius: '12px', overflow: 'hidden', cursor: 'pointer', aspectRatio: isMobile ? '4/3' : '3/2' }}
