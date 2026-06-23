@@ -5,6 +5,7 @@ import PackageCard from '../components/PackageCard'
 import RotatingHeroBackground from '../components/RotatingHeroBackground'
 import { DESTINATIONS, PACKAGES, TESTIMONIALS } from '../lib/data'
 import logo from '../assets/vasudhara-logo.png'
+import msmeCertificate from '../assets/msme-certificate.png'
 
 const CONTACT_PHONE_DISPLAY = '+919046605444'
 const CONTACT_PHONE_LINK = '+919046605444'
@@ -182,9 +183,6 @@ export default function Home() {
         <RotatingHeroBackground alt="Himalayas" />
 
         <div style={{ position: 'relative', zIndex: 2, textAlign: 'center', maxWidth: '780px', width: '100%' }}>
-          <div style={{ display: 'inline-block', background: 'rgba(212,137,26,0.15)', border: '1px solid rgba(212,137,26,0.4)', color: '#f0b445', fontSize: '11px', fontWeight: '600', letterSpacing: '2px', textTransform: 'uppercase', padding: '6px 18px', borderRadius: '100px', marginBottom: '24px' }}>
-            Siliguri-Based - Est. 2008
-          </div>
           <h1 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 'clamp(38px, 7vw, 82px)', fontWeight: '300', color: '#ffffff', lineHeight: '1.08', marginBottom: '36px', letterSpacing: '-0.02em' }}>
             Journeys into the
             <br />
@@ -556,6 +554,15 @@ export default function Home() {
               </a>
             </div>
           </div>
+
+          <div style={{ padding: isMobile ? '24px 0' : '28px 0', display: 'flex', justifyContent: 'center' }}>
+            <img
+              src={msmeCertificate}
+              alt="MSME Certificate - Govt. of India"
+              style={{ height: isMobile ? '48px' : '60px', width: 'auto', objectFit: 'contain' }}
+            />
+          </div>
+
           <div style={{ padding: '20px 0', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '12px', fontSize: '12px', color: '#4a5568' }}>
             <div>(c) 2026 Vasudhara Tour and Travels. Siliguri, West Bengal.</div>
             <div>Built with React and ready for Vercel deployment.</div>
