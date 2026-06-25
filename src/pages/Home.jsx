@@ -557,6 +557,23 @@ export default function Home() {
               </a>
             </div>
           </div>
+          <div
+  style={{
+    display: "flex",
+    justifyContent: "center",
+    padding: "28px 0 18px",
+  }}
+>
+  <img
+    src={msmeLogo}
+    alt="MSME Registered"
+    style={{
+      width: "180px",
+      height: "auto",
+      objectFit: "contain",
+    }}
+  />
+</div>
           <div style={{ padding: '20px 0', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '12px', fontSize: '12px', color: '#4a5568' }}>
             <div>(c) 2026 Vasudhara Tour and Travels. Siliguri, West Bengal.</div>
             <div>Built with React and ready for Vercel deployment.</div>
