@@ -183,9 +183,6 @@ export default function Home() {
         <RotatingHeroBackground alt="Himalayas" />
 
         <div style={{ position: 'relative', zIndex: 2, textAlign: 'center', maxWidth: '780px', width: '100%' }}>
-          <div style={{ display: 'inline-block', background: 'rgba(212,137,26,0.15)', border: '1px solid rgba(212,137,26,0.4)', color: '#f0b445', fontSize: '11px', fontWeight: '600', letterSpacing: '2px', textTransform: 'uppercase', padding: '6px 18px', borderRadius: '100px', marginBottom: '24px' }}>
-            Siliguri-Based - Est. 2008
-          </div>
           <h1 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 'clamp(38px, 7vw, 82px)', fontWeight: '300', color: '#ffffff', lineHeight: '1.08', marginBottom: '36px', letterSpacing: '-0.02em' }}>
             Journeys into the
             <br />
