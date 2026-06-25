@@ -560,14 +560,14 @@ export default function Home() {
     justifyContent: "center",
     padding: "36px 0 24px",
 borderTop: "1px solid rgba(255,255,255,0.08)",
-marginTop: "24px",,
+marginTop: "24px",
   }}
 >
   <img
     src={msmeLogo}
     alt="MSME Registered"
     style={{
-      width: "220px",
+      width: "180px",
       height: "auto",
       objectFit: "contain",
     }}
