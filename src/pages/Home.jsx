@@ -5,6 +5,7 @@ import PackageCard from '../components/PackageCard'
 import RotatingHeroBackground from '../components/RotatingHeroBackground'
 import { DESTINATIONS, PACKAGES, TESTIMONIALS } from '../lib/data'
 import logo from '../assets/vasudhara-logo.png'
+import msmeLogo from "../assets/msme.png";
 
 const CONTACT_PHONE_DISPLAY = '+919046605444'
 const CONTACT_PHONE_LINK = '+919046605444'
