@@ -558,14 +558,16 @@ export default function Home() {
   style={{
     display: "flex",
     justifyContent: "center",
-    padding: "28px 0 18px",
+    padding: "36px 0 24px",
+borderTop: "1px solid rgba(255,255,255,0.08)",
+marginTop: "24px",,
   }}
 >
   <img
     src={msmeLogo}
     alt="MSME Registered"
     style={{
-      width: "180px",
+      width: "220px",
       height: "auto",
       objectFit: "contain",
     }}
