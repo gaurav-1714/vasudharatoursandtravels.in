@@ -1,4 +1,9 @@
 import ladakhImage from '../assets/destinations/ladakh.svg'
+import ladakhThikseyMonastery from '../assets/gallery/ladakh/thiksey-monastery.png'
+import ladakhNubraCamelSafari from '../assets/gallery/ladakh/nubra-valley-camel-safari.png'
+import ladakhPangongLake from '../assets/gallery/ladakh/pangong-lake-cairns.png'
+import ladakhHikkimVillage from '../assets/gallery/ladakh/hikkim-last-village.png'
+import ladakhNubraValleyRiver from '../assets/gallery/ladakh/nubra-valley-river.jpg'
 import jammuKashmirImage from '../assets/destinations/jammu-kashmir.svg'
 import himachalImage from '../assets/destinations/himachal.svg'
 import uttarakhandImage from '../assets/destinations/uttarakhand.svg'
@@ -278,8 +283,13 @@ export const PACKAGES = [
     minPax: 2,
     badge: 'Top Pick',
     badgeColor: 'amber',
-    imageUrl: 'https://images.unsplash.com/photo-1548013146-72479768bada?w=800&q=80',
-    gallery: ['https://images.unsplash.com/photo-1526772662000-3f88f10405ff?w=800&q=80'],
+    imageUrl: ladakhThikseyMonastery,
+    gallery: [
+      ladakhNubraCamelSafari,
+      ladakhPangongLake,
+      ladakhHikkimVillage,
+      ladakhNubraValleyRiver,
+    ],
     description:
       'A classic Ladakh circuit covering high passes, monasteries, Nubra dunes, and the stunning blue waters of Pangong.',
     highlights: ['Khardung La', 'Nubra Valley', 'Pangong Lake', 'Shanti Stupa', 'Monasteries'],
