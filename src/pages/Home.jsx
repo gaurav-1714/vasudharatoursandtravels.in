@@ -318,7 +318,7 @@ export default function Home() {
                 ) : (
                   <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : isTablet ? 'repeat(2, 1fr)' : 'repeat(3, 1fr)', gap: '22px' }}>
                     {filteredPackages.map((pkg, index) => (
-                      <Reveal key={pkg.id} delay={index * 60}>
+                      <Reveal key={pkg.slug} delay={index * 60}>
                         <PackageCard pkg={pkg} />
                       </Reveal>
                     ))}
