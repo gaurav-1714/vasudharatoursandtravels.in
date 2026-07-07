@@ -15,6 +15,7 @@ import meghalayaImage from '../assets/destinations/meghalaya.svg'
 import keralaImage from '../assets/destinations/kerala.svg'
 import nepalImage from '../assets/destinations/nepal.svg'
 import bhutanImage from '../assets/destinations/bhutan.svg'
+import { getPackageGallery, getPackageCover } from './galleryLoader'
 
 export const PACKAGES = [
   {
@@ -29,8 +30,8 @@ export const PACKAGES = [
     minPax: 2,
     badge: 'Best Seller',
     badgeColor: 'red',
-    imageUrl: 'https://images.unsplash.com/photo-1544735716-392fe2489ffa?w=800&q=80',
-    gallery: [
+    imageUrl: getPackageCover('classic-darjeeling') || 'https://images.unsplash.com/photo-1544735716-392fe2489ffa?w=800&q=80',
+    gallery: [...getPackageGallery('classic-darjeeling'),
       'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80',
       'https://images.unsplash.com/photo-1570789210967-2cac24afeb00?w=800&q=80',
     ],
@@ -63,8 +64,8 @@ export const PACKAGES = [
     minPax: 2,
     badge: 'Popular',
     badgeColor: 'blue',
-    imageUrl: 'https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?w=800&q=80',
-    gallery: ['https://images.unsplash.com/photo-1605640840605-14ac1855827b?w=800&q=80'],
+    imageUrl: getPackageCover('gangtok-sikkim') || 'https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?w=800&q=80',
+    gallery: [...getPackageGallery('gangtok-sikkim'), 'https://images.unsplash.com/photo-1605640840605-14ac1855827b?w=800&q=80'],
     description:
       'Discover the lively capital of Sikkim, where ancient monasteries, markets, and Himalayan viewpoints come together in one memorable escape.',
     highlights: ['Rumtek Monastery', 'Gangtok Cable Car', 'MG Marg', 'Tashi Viewpoint', 'Banjhakri Falls'],
@@ -94,8 +95,8 @@ export const PACKAGES = [
     minPax: 2,
     badge: 'Best Value',
     badgeColor: 'amber',
-    imageUrl: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=800&q=80',
-    gallery: ['https://images.unsplash.com/photo-1519681393784-d120267933ba?w=800&q=80'],
+    imageUrl: getPackageCover('grand-himalaya') || 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=800&q=80',
+    gallery: [...getPackageGallery('grand-himalaya'), 'https://images.unsplash.com/photo-1519681393784-d120267933ba?w=800&q=80'],
     description:
       'A week-long circuit through tea gardens, monasteries, mountain roads, and high-altitude lakes across the Eastern Himalayas.',
     highlights: ['Tea Gardens', 'Toy Train', 'Tsomgo Lake', 'Rumtek Monastery', 'Kalimpong Views'],
@@ -126,8 +127,8 @@ export const PACKAGES = [
     minPax: 4,
     badge: 'Wildlife',
     badgeColor: 'green',
-    imageUrl: 'https://images.unsplash.com/photo-1448375240586-882707db888b?w=800&q=80',
-    gallery: ['https://images.unsplash.com/photo-1474511320723-9a56873867b5?w=800&q=80'],
+    imageUrl: getPackageCover('dooars-wildlife') || 'https://images.unsplash.com/photo-1448375240586-882707db888b?w=800&q=80',
+    gallery: [...getPackageGallery('dooars-wildlife'), 'https://images.unsplash.com/photo-1474511320723-9a56873867b5?w=800&q=80'],
     description:
       'Explore the forests of North Bengal with jeep safaris, birdwatching, and chances to spot rhinos, elephants, and gaur.',
     highlights: ['Rhino Safari', 'Elephant Safari', 'Gorumara', 'Jaldapara', 'Chilapata Forest'],
@@ -157,8 +158,8 @@ export const PACKAGES = [
     minPax: 2,
     badge: 'Honeymoon',
     badgeColor: 'pink',
-    imageUrl: 'https://images.unsplash.com/photo-1519681393784-d120267933ba?w=800&q=80',
-    gallery: ['https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&q=80'],
+    imageUrl: getPackageCover('pelling-honeymoon') || 'https://images.unsplash.com/photo-1519681393784-d120267933ba?w=800&q=80',
+    gallery: [...getPackageGallery('pelling-honeymoon'), 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&q=80'],
     description:
       'A romantic mountain retreat with sweeping Kanchenjunga views, monasteries, waterfalls, and special honeymoon touches.',
     highlights: ['View Room', 'Glass Skywalk', 'Pemayangtse Monastery', 'Waterfalls', 'Candlelight Dinner'],
@@ -189,8 +190,8 @@ export const PACKAGES = [
     minPax: 2,
     badge: 'Hidden Gem',
     badgeColor: 'purple',
-    imageUrl: 'https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=800&q=80',
-    gallery: [],
+    imageUrl: getPackageCover('kalimpong') || 'https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=800&q=80',
+    gallery: getPackageGallery('kalimpong'),
     description:
       'A compact hill retreat known for nurseries, monasteries, Teesta valley viewpoints, and a quieter pace than the busier hill stations.',
     highlights: ['Flower Nurseries', 'Deolo Hill', 'Monasteries', 'Teesta Views', 'Arts and Crafts'],
@@ -219,8 +220,8 @@ export const PACKAGES = [
     minPax: 2,
     badge: 'Adventure',
     badgeColor: 'orange',
-    imageUrl: 'https://images.unsplash.com/photo-1486911278844-a81c5267e227?w=800&q=80',
-    gallery: ['https://images.unsplash.com/photo-1551632811-561732d1e306?w=800&q=80'],
+    imageUrl: getPackageCover('sandakphu-trek') || 'https://images.unsplash.com/photo-1486911278844-a81c5267e227?w=800&q=80',
+    gallery: [...getPackageGallery('sandakphu-trek'), 'https://images.unsplash.com/photo-1551632811-561732d1e306?w=800&q=80'],
     description:
       "A bucket-list trek with ridgeline views of Everest, Kanchenjunga, Lhotse, and Makalu on clear mornings.",
     highlights: ['High-altitude views', 'Singalila trails', 'Tumling', 'Kalapokhri', 'Summit sunrise'],
@@ -251,8 +252,8 @@ export const PACKAGES = [
     minPax: 4,
     badge: 'Seasonal',
     badgeColor: 'teal',
-    imageUrl: 'https://images.unsplash.com/photo-1509316785289-025f5b846b35?w=800&q=80',
-    gallery: [],
+    imageUrl: getPackageCover('lachung-yumthang') || 'https://images.unsplash.com/photo-1509316785289-025f5b846b35?w=800&q=80',
+    gallery: getPackageGallery('lachung-yumthang'),
     description:
       'A scenic North Sikkim journey through alpine valleys, rivers, seasonal flowers, and mountain villages.',
     highlights: ['Yumthang Valley', 'Zero Point', 'Lachung Village', 'Rhododendrons', 'Glacial streams'],
@@ -283,8 +284,8 @@ export const PACKAGES = [
     minPax: 2,
     badge: 'Top Pick',
     badgeColor: 'amber',
-    imageUrl: ladakhThikseyMonastery,
-    gallery: [
+    imageUrl: getPackageCover('leh-ladakh-highlights') || ladakhThikseyMonastery,
+    gallery: [...getPackageGallery('leh-ladakh-highlights'),
       ladakhNubraCamelSafari,
       ladakhPangongLake,
       ladakhHikkimVillage,
@@ -321,8 +322,8 @@ export const PACKAGES = [
     minPax: 2,
     badge: 'Popular',
     badgeColor: 'blue',
-    imageUrl: 'https://images.unsplash.com/photo-1548013146-72479768bada?w=800&q=80',
-    gallery: ['https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=800&q=80'],
+    imageUrl: getPackageCover('kashmir-gulmarg-pahalgam') || 'https://images.unsplash.com/photo-1548013146-72479768bada?w=800&q=80',
+    gallery: [...getPackageGallery('kashmir-gulmarg-pahalgam'), 'https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=800&q=80'],
     description:
       'Dal Lake serenity, Mughal gardens, and scenic day trips to Gulmarg and Pahalgam for a relaxed mountain holiday.',
     highlights: ['Dal Lake Shikara', 'Gulmarg Meadows', 'Pahalgam Valley', 'Mughal Gardens'],
@@ -354,8 +355,8 @@ export const PACKAGES = [
     minPax: 2,
     badge: 'Best Seller',
     badgeColor: 'red',
-    imageUrl: 'https://images.unsplash.com/photo-1519681393784-d120267933ba?w=800&q=80',
-    gallery: ['https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=800&q=80'],
+    imageUrl: getPackageCover('himachal-manali-kasol') || 'https://images.unsplash.com/photo-1519681393784-d120267933ba?w=800&q=80',
+    gallery: [...getPackageGallery('himachal-manali-kasol'), 'https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=800&q=80'],
     description:
       'A crowd-favorite Himachal route with mountain views, cafes, and adventure options around Solang and nearby valleys.',
     highlights: ['Solang Valley', 'Old Manali', 'Parvati Valley', 'Cafe Hopping'],
@@ -386,8 +387,8 @@ export const PACKAGES = [
     minPax: 2,
     badge: 'Relax',
     badgeColor: 'teal',
-    imageUrl: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=800&q=80',
-    gallery: ['https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=800&q=80'],
+    imageUrl: getPackageCover('uttarakhand-rishikesh-mussoorie') || 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=800&q=80',
+    gallery: [...getPackageGallery('uttarakhand-rishikesh-mussoorie'), 'https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=800&q=80'],
     description:
       'A balanced Uttarakhand trip combining the calm of Rishikesh with the viewpoints and mall-road charm of Mussoorie.',
     highlights: ['Ganga Aarti', 'River Views', 'Mussoorie Viewpoints', 'Local Markets'],
@@ -417,8 +418,8 @@ export const PACKAGES = [
     minPax: 2,
     badge: 'Offbeat',
     badgeColor: 'purple',
-    imageUrl: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80',
-    gallery: ['https://images.unsplash.com/photo-1519681393784-d120267933ba?w=800&q=80'],
+    imageUrl: getPackageCover('arunachal-tawang-monasteries') || 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80',
+    gallery: [...getPackageGallery('arunachal-tawang-monasteries'), 'https://images.unsplash.com/photo-1519681393784-d120267933ba?w=800&q=80'],
     description:
       'A scenic Arunachal journey focused on Tawang’s monasteries, mountain passes, and high-altitude lakes.',
     highlights: ['Tawang Monastery', 'Sela Pass', 'High-Altitude Lakes', 'Local Culture'],
@@ -450,8 +451,8 @@ export const PACKAGES = [
     minPax: 2,
     badge: 'Wildlife',
     badgeColor: 'green',
-    imageUrl: 'https://images.unsplash.com/photo-1448375240586-882707db888b?w=800&q=80',
-    gallery: ['https://images.unsplash.com/photo-1474511320723-9a56873867b5?w=800&q=80'],
+    imageUrl: getPackageCover('assam-kaziranga-wildlife') || 'https://images.unsplash.com/photo-1448375240586-882707db888b?w=800&q=80',
+    gallery: [...getPackageGallery('assam-kaziranga-wildlife'), 'https://images.unsplash.com/photo-1474511320723-9a56873867b5?w=800&q=80'],
     description:
       'A short and powerful wildlife break in Kaziranga, home to the one-horned rhinoceros and rich birdlife.',
     highlights: ['Jeep Safari', 'Rhino Spotting', 'Birding', 'Nature Trails'],
@@ -480,8 +481,8 @@ export const PACKAGES = [
     minPax: 2,
     badge: 'Trending',
     badgeColor: 'orange',
-    imageUrl: 'https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?w=800&q=80',
-    gallery: ['https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80'],
+    imageUrl: getPackageCover('meghalaya-shillong-cherrapunji') || 'https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?w=800&q=80',
+    gallery: [...getPackageGallery('meghalaya-shillong-cherrapunji'), 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80'],
     description:
       'Blue rivers, misty waterfalls, limestone caves, and viewpoints across Meghalaya’s most loved circuit.',
     highlights: ['Dawki River', 'Cherrapunji Falls', 'Caves', 'Viewpoints'],
@@ -512,8 +513,8 @@ export const PACKAGES = [
     minPax: 2,
     badge: 'Family',
     badgeColor: 'blue',
-    imageUrl: 'https://images.unsplash.com/photo-1502082553048-f009c37129b9?w=800&q=80',
-    gallery: ['https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?w=800&q=80'],
+    imageUrl: getPackageCover('kerala-backwaters-munnar') || 'https://images.unsplash.com/photo-1502082553048-f009c37129b9?w=800&q=80',
+    gallery: [...getPackageGallery('kerala-backwaters-munnar'), 'https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?w=800&q=80'],
     description:
       'A classic Kerala mix of hill-station tea gardens, backwater calm, and city highlights for a smooth vacation.',
     highlights: ['Munnar Tea Gardens', 'Backwaters', 'Houseboat Experience', 'Kochi'],
@@ -544,8 +545,8 @@ export const PACKAGES = [
     minPax: 2,
     badge: 'International',
     badgeColor: 'teal',
-    imageUrl: 'https://images.unsplash.com/photo-1526772662000-3f88f10405ff?w=800&q=80',
-    gallery: ['https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?w=800&q=80'],
+    imageUrl: getPackageCover('nepal-kathmandu') || 'https://images.unsplash.com/photo-1526772662000-3f88f10405ff?w=800&q=80',
+    gallery: [...getPackageGallery('nepal-kathmandu'), 'https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?w=800&q=80'],
     description:
       'Temples, heritage squares, and Himalayan culture in the heart of Kathmandu valley.',
     highlights: ['Kathmandu Temples', 'Durbar Square', 'Local Markets', 'Pashupatinath'],
@@ -575,8 +576,8 @@ export const PACKAGES = [
     minPax: 2,
     badge: 'International',
     badgeColor: 'teal',
-    imageUrl: 'https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?w=800&q=80',
-    gallery: ['https://images.unsplash.com/photo-1526772662000-3f88f10405ff?w=800&q=80'],
+    imageUrl: getPackageCover('nepal-pokhara') || 'https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?w=800&q=80',
+    gallery: [...getPackageGallery('nepal-pokhara'), 'https://images.unsplash.com/photo-1526772662000-3f88f10405ff?w=800&q=80'],
     description:
       'Lakeside calm and Himalayan sunrise views in Nepal’s most scenic valley town.',
     highlights: ['Pokhara Lakeside', 'Sunrise Viewpoint', 'Phewa Lake', 'Local Markets'],
@@ -606,8 +607,8 @@ export const PACKAGES = [
     minPax: 2,
     badge: 'International',
     badgeColor: 'teal',
-    imageUrl: 'https://images.unsplash.com/photo-1544735716-392fe2489ffa?w=800&q=80',
-    gallery: ['https://images.unsplash.com/photo-1551632811-561732d1e306?w=800&q=80'],
+    imageUrl: getPackageCover('nepal-upper-mustang') || 'https://images.unsplash.com/photo-1544735716-392fe2489ffa?w=800&q=80',
+    gallery: [...getPackageGallery('nepal-upper-mustang'), 'https://images.unsplash.com/photo-1551632811-561732d1e306?w=800&q=80'],
     description:
       'A high-altitude desert journey through Mustang’s walled city of Lo Manthang, ancient monasteries, and dramatic Himalayan rain-shadow landscapes.',
     highlights: ['Lo Manthang Walled City', 'Ancient Monasteries', 'Kagbeni Village', 'High Desert Landscapes'],
@@ -640,8 +641,8 @@ export const PACKAGES = [
     minPax: 2,
     badge: 'International',
     badgeColor: 'purple',
-    imageUrl: 'https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=800&q=80',
-    gallery: ['https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80'],
+    imageUrl: getPackageCover('bhutan-paro') || 'https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=800&q=80',
+    gallery: [...getPackageGallery('bhutan-paro'), 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80'],
     description:
       'A gentle introduction to Bhutan’s Paro valley, with cultural sights and scenic mountain drives.',
     highlights: ['Paro Valley', 'Tiger’s Nest Monastery', 'Scenic Drives', 'Local Markets'],
@@ -671,8 +672,8 @@ export const PACKAGES = [
     minPax: 2,
     badge: 'International',
     badgeColor: 'purple',
-    imageUrl: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80',
-    gallery: ['https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=800&q=80'],
+    imageUrl: getPackageCover('bhutan-thimphu') || 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80',
+    gallery: [...getPackageGallery('bhutan-thimphu'), 'https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=800&q=80'],
     description:
       'Explore Bhutan’s calm capital city, its monasteries, markets, and mountain viewpoints.',
     highlights: ['Thimphu Culture', 'Buddha Dordenma', 'Local Markets', 'Mountain Viewpoints'],
@@ -702,8 +703,8 @@ export const PACKAGES = [
     minPax: 2,
     badge: 'International',
     badgeColor: 'purple',
-    imageUrl: 'https://images.unsplash.com/photo-1553376656-2dd5c8d6d4b3?w=800&q=80',
-    gallery: ['https://images.unsplash.com/photo-1605640840605-14ac1855827b?w=800&q=80'],
+    imageUrl: getPackageCover('bhutan-punakha') || 'https://images.unsplash.com/photo-1553376656-2dd5c8d6d4b3?w=800&q=80',
+    gallery: [...getPackageGallery('bhutan-punakha'), 'https://images.unsplash.com/photo-1605640840605-14ac1855827b?w=800&q=80'],
     description:
       'Cross the scenic Dochula Pass into Punakha valley, home to Bhutan’s most beautiful fortress and gentle riverside walks.',
     highlights: ['Punakha Dzong', 'Dochula Pass', 'Suspension Bridge', 'Riverside Walks'],
@@ -726,18 +727,102 @@ export const PACKAGES = [
 ]
 
 export const DESTINATIONS = [
-  { id: 'ladakh', name: 'Ladakh', state: 'Ladakh', region: 'Ladakh', pkgCount: 6, imageUrl: ladakhImage, location: { mapUrl: 'https://maps.google.com/?q=Ladakh' } },
-  { id: 'jammu-kashmir', name: 'Jammu & Kashmir', state: 'Jammu & Kashmir', region: 'Jammu & Kashmir', pkgCount: 6, imageUrl: jammuKashmirImage, location: { mapUrl: 'https://maps.google.com/?q=Jammu+and+Kashmir' } },
-  { id: 'himachal', name: 'Himachal Pradesh', state: 'Himachal Pradesh', region: 'Himachal Pradesh', pkgCount: 7, imageUrl: himachalImage, location: { mapUrl: 'https://maps.google.com/?q=Himachal+Pradesh' } },
-  { id: 'uttarakhand', name: 'Uttarakhand', state: 'Uttarakhand', region: 'Uttarakhand', pkgCount: 7, imageUrl: uttarakhandImage, location: { mapUrl: 'https://maps.google.com/?q=Uttarakhand' } },
-  { id: 'darjeeling', name: 'Darjeeling', state: 'Darjeeling', region: 'West Bengal', pkgCount: 12, imageUrl: darjeelingImage, location: { mapUrl: 'https://maps.google.com/?q=Darjeeling,West+Bengal' } },
-  { id: 'sikkim', name: 'Sikkim', state: 'Sikkim', region: 'North-East India', pkgCount: 9, imageUrl: sikkimImage, location: { mapUrl: 'https://maps.google.com/?q=Sikkim' } },
-  { id: 'arunachal', name: 'Arunachal Pradesh', state: 'Arunachal Pradesh', region: 'Arunachal Pradesh', pkgCount: 5, imageUrl: arunachalImage, location: { mapUrl: 'https://maps.google.com/?q=Arunachal+Pradesh' } },
-  { id: 'assam', name: 'Assam', state: 'Assam', region: 'Assam', pkgCount: 5, imageUrl: assamImage, location: { mapUrl: 'https://maps.google.com/?q=Assam' } },
-  { id: 'meghalaya', name: 'Meghalaya', state: 'Meghalaya', region: 'Meghalaya', pkgCount: 5, imageUrl: meghalayaImage, location: { mapUrl: 'https://maps.google.com/?q=Meghalaya' } },
-  { id: 'kerala', name: 'Kerala', state: 'Kerala', region: 'Kerala', pkgCount: 8, imageUrl: keralaImage, location: { mapUrl: 'https://maps.google.com/?q=Kerala' } },
-  { id: 'nepal', name: 'Nepal', state: 'Nepal', region: 'Nepal', pkgCount: 3, imageUrl: nepalImage, location: { mapUrl: 'https://maps.google.com/?q=Nepal' } },
-  { id: 'bhutan', name: 'Bhutan', state: 'Bhutan', region: 'Bhutan', pkgCount: 3, imageUrl: bhutanImage, location: { mapUrl: 'https://maps.google.com/?q=Bhutan' } },
+  {
+    id: 'ladakh', name: 'Ladakh', state: 'Ladakh', region: 'Ladakh', pkgCount: 6, imageUrl: ladakhImage, location: { mapUrl: 'https://maps.google.com/?q=Ladakh' },
+    famousPlaces: [
+      { name: 'Pangong Lake', desc: 'A high-altitude lake famous for its changing shades of blue.' },
+      { name: 'Magnetic Hill', desc: 'A curious optical-illusion stretch where vehicles appear to defy gravity.' },
+      { name: 'Thiksey Monastery', desc: 'A striking cliffside monastery resembling a mini Potala Palace.' },
+    ],
+  },
+  {
+    id: 'jammu-kashmir', name: 'Jammu & Kashmir', state: 'Jammu & Kashmir', region: 'Jammu & Kashmir', pkgCount: 6, imageUrl: jammuKashmirImage, location: { mapUrl: 'https://maps.google.com/?q=Jammu+and+Kashmir' },
+    famousPlaces: [
+      { name: 'Dal Lake', desc: 'Iconic shikara rides and houseboats on Srinagar\u2019s famous lake.' },
+      { name: 'Gulmarg Gondola', desc: 'One of the world\u2019s highest cable cars, with meadow and snow views.' },
+      { name: 'Mughal Gardens', desc: 'Terraced Mughal-era gardens overlooking Dal Lake.' },
+    ],
+  },
+  {
+    id: 'himachal', name: 'Himachal Pradesh', state: 'Himachal Pradesh', region: 'Himachal Pradesh', pkgCount: 7, imageUrl: himachalImage, location: { mapUrl: 'https://maps.google.com/?q=Himachal+Pradesh' },
+    famousPlaces: [
+      { name: 'Solang Valley', desc: 'Adventure sports and snow-capped views near Manali.' },
+      { name: 'Old Manali', desc: 'Cafes, riverside lanes, and a laid-back mountain-town vibe.' },
+      { name: 'Rohtang Pass', desc: 'A dramatic high-altitude pass with glaciers and panoramic views.' },
+    ],
+  },
+  {
+    id: 'uttarakhand', name: 'Uttarakhand', state: 'Uttarakhand', region: 'Uttarakhand', pkgCount: 7, imageUrl: uttarakhandImage, location: { mapUrl: 'https://maps.google.com/?q=Uttarakhand' },
+    famousPlaces: [
+      { name: 'Ganga Aarti, Rishikesh', desc: 'A mesmerizing riverside prayer ceremony at sunset.' },
+      { name: 'Mussoorie Mall Road', desc: 'A charming hill-station promenade with viewpoints and cafes.' },
+      { name: 'Valley of Flowers', desc: 'A UNESCO-listed alpine meadow bursting with seasonal blooms.' },
+    ],
+  },
+  {
+    id: 'darjeeling', name: 'Darjeeling', state: 'Darjeeling', region: 'West Bengal', pkgCount: 12, imageUrl: darjeelingImage, location: { mapUrl: 'https://maps.google.com/?q=Darjeeling,West+Bengal' },
+    famousPlaces: [
+      { name: 'Tiger Hill', desc: 'Famous for sunrise views over Kanchenjunga.' },
+      { name: 'Darjeeling Toy Train', desc: 'The UNESCO-listed narrow-gauge railway through the hills.' },
+      { name: 'Tea Gardens', desc: 'Rolling estates producing some of the world\u2019s finest tea.' },
+    ],
+  },
+  {
+    id: 'sikkim', name: 'Sikkim', state: 'Sikkim', region: 'North-East India', pkgCount: 9, imageUrl: sikkimImage, location: { mapUrl: 'https://maps.google.com/?q=Sikkim' },
+    famousPlaces: [
+      { name: 'Tsomgo Lake', desc: 'A glacial lake at high altitude, often snow-fringed.' },
+      { name: 'Rumtek Monastery', desc: 'One of Sikkim\u2019s largest and most significant monasteries.' },
+      { name: 'Nathula Pass', desc: 'A historic Indo-China border pass on the old Silk Route.' },
+    ],
+  },
+  {
+    id: 'arunachal', name: 'Arunachal Pradesh', state: 'Arunachal Pradesh', region: 'Arunachal Pradesh', pkgCount: 5, imageUrl: arunachalImage, location: { mapUrl: 'https://maps.google.com/?q=Arunachal+Pradesh' },
+    famousPlaces: [
+      { name: 'Tawang Monastery', desc: 'India\u2019s largest monastery, perched above the Tawang valley.' },
+      { name: 'Sela Pass', desc: 'A scenic high-altitude pass with a sacred lake nearby.' },
+      { name: 'Ziro Valley', desc: 'A UNESCO-tentative valley known for its rice fields and Apatani culture.' },
+    ],
+  },
+  {
+    id: 'assam', name: 'Assam', state: 'Assam', region: 'Assam', pkgCount: 5, imageUrl: assamImage, location: { mapUrl: 'https://maps.google.com/?q=Assam' },
+    famousPlaces: [
+      { name: 'Kaziranga National Park', desc: 'Home to the one-horned rhinoceros and rich birdlife.' },
+      { name: 'Kamakhya Temple', desc: 'A revered Shakti temple overlooking Guwahati.' },
+      { name: 'Majuli Island', desc: 'The world\u2019s largest river island, known for its monasteries.' },
+    ],
+  },
+  {
+    id: 'meghalaya', name: 'Meghalaya', state: 'Meghalaya', region: 'Meghalaya', pkgCount: 5, imageUrl: meghalayaImage, location: { mapUrl: 'https://maps.google.com/?q=Meghalaya' },
+    famousPlaces: [
+      { name: 'Living Root Bridges', desc: 'Bridges grown from living tree roots over generations.' },
+      { name: 'Cherrapunji Waterfalls', desc: 'Dramatic falls in one of the wettest places on Earth.' },
+      { name: 'Dawki River', desc: 'A crystal-clear river famous for its glass-like clarity.' },
+    ],
+  },
+  {
+    id: 'kerala', name: 'Kerala', state: 'Kerala', region: 'Kerala', pkgCount: 8, imageUrl: keralaImage, location: { mapUrl: 'https://maps.google.com/?q=Kerala' },
+    famousPlaces: [
+      { name: 'Alleppey Backwaters', desc: 'Serene houseboat cruises through palm-fringed canals.' },
+      { name: 'Munnar Tea Gardens', desc: 'Misty hills carpeted with rolling tea plantations.' },
+      { name: 'Fort Kochi', desc: 'A historic port town with colonial architecture and Chinese fishing nets.' },
+    ],
+  },
+  {
+    id: 'nepal', name: 'Nepal', state: 'Nepal', region: 'Nepal', pkgCount: 3, imageUrl: nepalImage, location: { mapUrl: 'https://maps.google.com/?q=Nepal' },
+    famousPlaces: [
+      { name: 'Pashupatinath Temple', desc: 'A sacred Hindu temple complex on the Bagmati River.' },
+      { name: 'Phewa Lake, Pokhara', desc: 'A tranquil lake with reflections of the Annapurna range.' },
+      { name: 'Lo Manthang, Mustang', desc: 'A walled medieval city in the Himalayan rain-shadow desert.' },
+    ],
+  },
+  {
+    id: 'bhutan', name: 'Bhutan', state: 'Bhutan', region: 'Bhutan', pkgCount: 3, imageUrl: bhutanImage, location: { mapUrl: 'https://maps.google.com/?q=Bhutan' },
+    famousPlaces: [
+      { name: 'Tiger\u2019s Nest Monastery', desc: 'A cliffside monastery reached by a scenic hike above Paro.' },
+      { name: 'Punakha Dzong', desc: 'Bhutan\u2019s most beautiful fortress, at the river confluence.' },
+      { name: 'Buddha Dordenma', desc: 'A giant Buddha statue overlooking Thimphu valley.' },
+    ],
+  },
 ]
 
 export const TESTIMONIALS = [
