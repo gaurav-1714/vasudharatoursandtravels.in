@@ -499,7 +499,7 @@ export default function Home() {
 
       <footer style={{ background: '#0a0c12', borderTop: '1px solid rgba(255,255,255,0.06)', padding: isMobile ? '40px 20px 0' : '56px 40px 0' }}>
         <div style={{ maxWidth: '1180px', margin: '0 auto' }}>
-          <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : isTablet ? '1fr 1fr' : '2fr 1fr 1fr', gap: isMobile ? '28px' : '40px', paddingBottom: '40px', borderBottom: '1px solid rgba(255,255,255,0.06)' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : isTablet ? '1fr 1fr' : '2fr 1fr 1fr 1fr', gap: isMobile ? '28px' : '40px', paddingBottom: '40px', borderBottom: '1px solid rgba(255,255,255,0.06)' }}>
             <div>
               <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '16px' }}>
                 <div style={{ width: '168px', height: '48px', background: 'transparent', borderRadius: '12px', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}>
@@ -566,26 +566,18 @@ export default function Home() {
                 Admin
               </a>
             </div>
+            <div style={{ display: 'flex', alignItems: isMobile || isTablet ? 'flex-start' : 'center' }}>
+              <img
+                src={msmeLogo}
+                alt="MSME Registered"
+                style={{
+                  width: '150px',
+                  height: 'auto',
+                  objectFit: 'contain',
+                }}
+              />
+            </div>
           </div>
-          <div
-  style={{
-    display: "flex",
-    justifyContent: "center",
-    padding: "36px 0 24px",
-borderTop: "1px solid rgba(255,255,255,0.08)",
-marginTop: "24px",
-  }}
->
-  <img
-    src={msmeLogo}
-    alt="MSME Registered"
-    style={{
-      width: "180px",
-      height: "auto",
-      objectFit: "contain",
-    }}
-  />
-</div>
           <div style={{ padding: '20px 0', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '12px', fontSize: '12px', color: '#4a5568' }}>
             <div>(c) 2026 Vasudhara Tour and Travels. Siliguri, West Bengal.</div>
             <div>Built with React and ready for Vercel deployment.</div>
