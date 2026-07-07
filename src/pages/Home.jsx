@@ -384,6 +384,19 @@ export default function Home() {
                   <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(0,0,0,0.65) 0%, transparent 55%)', display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', padding: '16px' }}>
                     <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: isMobile ? '18px' : '22px', fontWeight: '700', color: '#ffffff' }}>{destination.name}</div>
                     <div style={{ fontSize: '11px', color: 'rgba(255,255,255,0.7)' }}>{destination.pkgCount} packages - {destination.region}</div>
+                    {destination.famousPlaces?.length > 0 && (
+                      <div style={{ display: 'flex', flexWrap: 'wrap', gap: '4px', marginTop: '6px' }}>
+                        {destination.famousPlaces.map((place) => (
+                          <span
+                            key={place.name}
+                            title={place.desc}
+                            style={{ fontSize: '9px', color: '#f0b445', background: 'rgba(240,180,69,0.12)', border: '1px solid rgba(240,180,69,0.3)', borderRadius: '20px', padding: '2px 8px' }}
+                          >
+                            {place.name}
+                          </span>
+                        ))}
+                      </div>
+                    )}
                     {destination.location?.mapUrl && (
                       <a href={destination.location.mapUrl} target="_blank" rel="noopener noreferrer" onClick={(event) => event.stopPropagation()} style={{ fontSize: '10px', color: '#d4891a', marginTop: '4px', textDecoration: 'none' }}>
                         View on map
