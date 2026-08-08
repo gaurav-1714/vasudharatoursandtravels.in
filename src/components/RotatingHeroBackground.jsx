@@ -37,6 +37,9 @@ export default function RotatingHeroBackground({ alt = 'Himalayas' }) {
           key={src}
           src={src}
           alt={alt}
+          loading={index === 0 ? 'eager' : 'lazy'}
+          fetchPriority={index === 0 ? 'high' : 'auto'}
+          decoding="async"
           style={{
             position: 'absolute',
             inset: 0,
