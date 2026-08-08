@@ -57,7 +57,7 @@ export default function PackageDetail() {
         </div>
       </div>
 
-      <div style={{ paddingTop: '56px', position: 'relative', height: isMobile ? '380px' : '560px', overflow: 'hidden' }}>
+      <div style={{ paddingTop: '56px', position: 'relative', height: isMobile ? '440px' : '640px', overflow: 'hidden' }}>
         <img
           key={allImages[imageIndex]}
           src={allImages[imageIndex]}
