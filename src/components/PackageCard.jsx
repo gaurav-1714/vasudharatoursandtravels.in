@@ -42,6 +42,8 @@ export default function PackageCard({ pkg }) {
           src={imageError ? fallbackImage : pkg.imageUrl}
           alt={pkg.title}
           onError={() => setImageError(true)}
+          loading="lazy"
+          decoding="async"
           style={{
             width: '100%',
             height: '100%',
