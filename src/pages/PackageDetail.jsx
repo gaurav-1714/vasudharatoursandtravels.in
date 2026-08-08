@@ -36,7 +36,14 @@ export default function PackageDetail() {
     )
   }
 
-  const allImages = [pkg.imageUrl, ...(pkg.gallery || [])].filter(Boolean)
+  // pkg.imageUrl is generated as the first photo in the gallery folder, so it
+  // duplicates gallery[0]. Without de-duping, clicking "next" the first time
+  // swaps to a visually-identical image and looks like the button did
+  // nothing (it only "works" on the 2nd click once a genuinely different
+  // photo shows up). De-dupe by URL so every click shows a new image.
+  const allImages = [pkg.imageUrl, ...(pkg.gallery || [])].filter(
+    (src, index, arr) => Boolean(src) && arr.indexOf(src) === index
+  )
   const tabs = ['itinerary', 'inclusions', 'highlights']
 
   return (
@@ -50,8 +57,16 @@ export default function PackageDetail() {
         </div>
       </div>
 
-      <div style={{ paddingTop: '56px', position: 'relative', height: isMobile ? '280px' : '420px', overflow: 'hidden' }}>
-        <img src={allImages[imageIndex]} alt={pkg.title} style={{ width: '100%', height: '100%', objectFit: 'cover', position: 'relative', zIndex: 0 }} />
+      <div style={{ paddingTop: '56px', position: 'relative', height: isMobile ? '380px' : '560px', overflow: 'hidden' }}>
+        <img
+          key={allImages[imageIndex]}
+          src={allImages[imageIndex]}
+          alt={pkg.title}
+          loading="eager"
+          decoding="async"
+          fetchPriority="high"
+          style={{ width: '100%', height: '100%', objectFit: 'cover', position: 'relative', zIndex: 0 }}
+        />
         <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(12,15,21,1) 0%, rgba(12,15,21,0.2) 50%, transparent 100%)', zIndex: 1, pointerEvents: 'none' }} />
 
         {allImages.length > 1 && (
