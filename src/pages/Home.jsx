@@ -380,7 +380,7 @@ export default function Home() {
                   }}
                   style={{ position: 'relative', borderRadius: '12px', overflow: 'hidden', cursor: 'pointer', aspectRatio: isMobile ? '4/3' : '3/2' }}
                 >
-                  <img src={destination.imageUrl} alt={destination.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                  <img src={destination.imageUrl} alt={destination.name} loading="lazy" decoding="async" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                   <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(0,0,0,0.65) 0%, transparent 55%)', display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', padding: '16px' }}>
                     <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: isMobile ? '18px' : '22px', fontWeight: '700', color: '#ffffff' }}>{destination.name}</div>
                     <div style={{ fontSize: '11px', color: 'rgba(255,255,255,0.7)' }}>{destination.pkgCount} packages - {destination.region}</div>
